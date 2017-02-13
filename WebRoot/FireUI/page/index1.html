@@ -1,0 +1,41 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+当前登录用户为：${username!''}${test!''}
+<title>ssssss</title>
+<!-- <script src="/FireUI/js/add.js"></script> -->
+</head>
+<body>
+<!--blog表名 title字段名  -->
+<body>
+<table>
+	<#list blogPage as user>
+	
+        <tr>
+            <td>
+            ${(user.id)!''}
+            </td>
+            <td>
+            ${(user.title)!''}
+            </td>
+            <td>
+            ${(user.content)!''}
+            </td>
+        <td>
+            这个是查询单条的访问路径
+            <a href="/userid/${(user.id)!''}">查看</a>
+            </td>
+        </tr>
+    </#list>	
+    </table>
+     ${b!''}
+ <form action="add">
+
+        <input type="text" name="role.title">
+        <input type="text" name="role.content">
+        <input type="submit" value="提交">
+    </form> 
+</body>
+</html>

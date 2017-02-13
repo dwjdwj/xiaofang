@@ -1,0 +1,150 @@
+@charset "utf-8";
+/* CSS Document */
+
+
+
+
+body, html {
+	background:#9CDAFF;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+	margin:0;
+	font-family:"微软雅黑"
+	}
+#Map_title{
+	width: 94%;
+	height: 10%;
+
+	left:3%;
+	position:absolute;
+	
+	}	
+#Map_logo{
+	width:70%;
+	height:10%;
+	position:fixed;
+	}	
+#MAp_button{
+	width:30%;
+	height:10%;
+	right:0px;
+	vertical-align:center;
+	position:fixed;
+	padding-top:2%;
+	}	
+	
+#Map_allmap{
+	 position: absolute;
+	 border:#06F solid 2px;
+     top: 10%; left: 3%; bottom: 19.5%; right: 3%; 
+	     height: 60%;
+	         margin-top: 3%;
+	}
+input{
+		width:29%;
+		height:50%;
+		}
+#Map_report{
+	top: 10%; left: 3%; bottom: 19.5%; right:50%;
+	position:fixed;
+	background:#86D2FC;
+	border:#ccc solid;
+	box-shadow: 0 0 3px  #000099;
+	display:none;
+	
+    width: 54%;
+    height: 68%;
+	 
+	}			
+
+#Map_banquan{
+	width: 100%;
+	height: 4.5%;
+	background: #000;
+	position: fixed;
+	bottom: 0px;
+	color:#FFF;
+	font-size: 10px;
+	text-align: center;
+	
+	
+}	
+#Map_dongtai{
+     width:94%;
+	 height:15%;
+	 left:3%;
+	 bottom: 4.5%;
+	 position:fixed;
+	  }	
+#Map_box1{
+	width:23.5%;
+	height:100%;
+	position:absolute;
+	}
+		  
+#Map_box2{
+	width:23.5%;
+	height:100%;
+	position:absolute;
+	left:25.5%;
+	}
+#Map_box3{
+	width:23.5%;
+	height:100%;
+	position:absolute;
+	left:51.5%;
+	}
+#Map_box4{
+	width:23.5%;
+	height:100%;
+	position:absolute;
+	left:76.5%;
+	}
+#Map_jx{
+	width:70%;
+	height:4%;
+	padding-left:2%;
+	padding-top:1%}
+#Map_close{
+	width:5%;
+	height:10%;
+	float:right;
+	right:0;
+	top:0;
+	z-index:999;
+	position:absolute;
+	}
+#Map_jx1{
+	width:95%;
+	height:4%;
+    padding-left:2%;
+	padding-top:1%}	
+.css{
+	width:13%
+	}
+.css_fc{
+	width:13%;
+		margin-left:11%	;
+	}
+
+.checkbox{
+	width:15%;
+	_vertical-align:-1px;
+	vertical-align:-4px;}	
+.span_user{
+	 color: rgba(0,0,0,0.8);
+	 font-family: fantasy; 
+	 font-size: inherit
+}
+
+.index_input.{
+	border:#FFF solid;
+	border-radius:3px
+	width:13%;
+}
+
+/*培训预约  */
+
+
+

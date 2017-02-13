@@ -1,0 +1,105 @@
+@charset "utf-8";
+/* CSS Document */
+#Map_dongtai{
+     width:94%;
+	 height:15%;
+	 left:3%;
+	 bottom: 4.5%;
+	 position:fixed;
+	 margin-top:2px;
+	  }	
+#Map_box1{
+	width:23.5%;
+	height:100%;
+	position:absolute;
+	
+	}
+		  
+#Map_box2{
+	width:23.5%;
+	height:100%;
+	position:absolute;
+	left:25.5%;
+	}
+#Map_box3{
+	width:23.5%;
+	height:100%;
+	position:absolute;
+	left:51.5%;
+	}
+#Map_box4{
+	width:23.5%;
+	height:100%;
+	position:absolute;
+	left:76.5%;
+	}
+.dynamic{
+	float:right
+	}	
+
+#Features_4{
+	z-index:2;
+	top: 11%; right: 9%;
+	position:fixed;
+	background-color:transparent;
+	display:none;
+	}
+	
+#Map_View{
+	top: 10%; left: 3%; bottom: 19.5%; right:75%; 
+	background:#95CFF2; 
+	position:absolute; 
+	margin:0%;
+	display:none;
+	border:#666 solid 3px;
+	}
+.Map_View_l1{
+	margin-top:5px;
+	background:#00C;
+	color:#FFFFFF;
+	border:#fff solid;
+	border-width:1px;
+	}
+.Map_View_l234{
+	margin-top:5px;
+	background-color:transparent;
+	color:#00C;
+	}	
+#mylook_types{
+	padding:2px;
+	position:absolute;
+	background:#95CFF2;
+	border:#CCC solid;
+	left: 25%; bottom: 19.5%;
+	border:#666 solid 3px;
+	text-align:center;
+	display:none;
+	}
+		
+#all_shebei{
+	top: 10%; left: 25%; bottom: 19.5%; right:3%;
+	background:#FFF;
+	position:absolute;
+	border:#666 solid 3px;
+	padding:10px;
+	display:none;
+}
+.shebei_detail{
+	width:20%;
+	height:20%;
+	position:relative;
+	background-color:transparent;
+	border:#95CFF2;
+	border-radius:5px;
+	display:none;
+	}
+/* 柱状图div大小 */
+#Map_coun{
+	width:30%;
+	height:40%;
+	right:0%;
+	float:right;
+	top:30%;
+	background:#C99;
+	position:fixed;
+	display:none;}		

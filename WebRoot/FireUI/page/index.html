@@ -1,0 +1,489 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+<link rel="stylesheet" href="${base}/FireUI/css/index.css" type="text/css"/>
+<link rel="stylesheet" href="${base}/FireUI/css/jquery-ui.css" type="text/css"/>
+<link rel="stylesheet" href="${base}/FireUI/css/jquery.multiselect.css" type="text/css"/>
+<link rel="stylesheet" href="${base}/FireUI/css/dynamic.css" type="text/css"/>
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=ZOvYT7GLTm3wA5KryqVuwdYgbL2zsD7e"></script>
+<script type="text/javascript" src="${base}/FireUI/js/jquery.1.7.2.min.js"></script>
+<script type="text/javascript" src="${base}/FireUI/js/jquery-ui.min.js"></script>
+<script type="text/javascript" src="${base}/FireUI/js/echarts.js"></script>
+<script type="text/javascript" src="${base}/FireUI/js/jquery.multiselect.js"></script>
+<script type="text/javascript" src="${base}/FireUI/js/index_input.js"></script>
+<title>兰州市消防一张图</title>
+</head>
+<body >
+<div id="Map_title">
+
+  <div id="Map_logo">
+ 
+    <h2>兰州市消防信息采集平台</h2>
+    <span  class="span_user">
+   ${login_username!''}<a style="text-decoration:none;margin-left: 3%" href="${base}/tuichu">
+   	注销</a></span>
+  </div>
+  <div id="MAp_button">
+    <input type="button"id="bt" value="我要采集" onClick="show()" onMouseUp="fenju_id()" onMouseOver="danwei()">
+    <input type="button" value="我要查看" onClick="View_show()">
+    <input type="button" value="我要编辑" onClick="">
+  </div>
+</div>
+<div id="Map_allmap"></div>
+<div id="Features_4">
+  <button onClick="Map_count()" >统计分析</button>
+  <button onClick="Map_checking()" >消防检查</button>
+  <button onClick="Map_warn()">到期提醒</button>
+  <button onClick="Map_recommend()">设备推荐</button></div>
+
+<div id="Map_report">
+  <div id="Map_jx">基本信息</div>
+  <div id="Map_close">
+    <input type="text" id="div_close" style=" width:25px; height:18px; font-size:12px; text-align:center; " value="关闭"  onClick="div_close()"/>
+  </div>
+  <div id="Map_jx1">
+  <form action="add">
+    所属分局：<select  name="jb.fjid" id="fjname"onclick="pcs()" style="border:#FFF solid; margin-bottom:2px; border-radius:3px">
+    
+    <option >请选择分局</option>
+    
+    </select>
+ 所属派出所： <select  name="jb.pcsid" id="pcsname" onclick="sq()" style="border:#FFF solid; margin-bottom:2px; border-radius:3px">
+<option>请选择派出所</option>
+</select>
+所属派社区： <select  id="sqname"name="jb.sqid" style="border:#FFF solid; margin-bottom:2px; border-radius:3px">
+ <option>请选择社区</option></select> <br>
+ 单位名称：
+ <input type="text"name="jb.dwname" style="border:#FFF solid; border-radius:3px;"  class="css"/>
+地址：
+    <input type="text"name="jb.dwaddress"  style="border:#FFF solid;border-radius:3px"class="css"/>
+   面积：
+    <input type="text" name="jb.dwmj"style="border:#FFF solid;border-radius:3px"class="css"/>
+   负&nbsp;&nbsp;责&nbsp;人：
+    <input type="text" name="jb.glname" style="border:#FFF solid;border-radius:3px"class="css"/> 
+<br>
+    营业执照：
+    <input type="text" name="jb.yyzzid" style="border:#FFF solid;border-radius:3px"class="css"/>
+   
+    电话：
+    <input type="text" name="jb.iphone" style="border:#FFF solid;border-radius:3px"class="css"/>
+   
+    位置：
+    <input type="text" name="jb.x" id="Map_lng"style="border:#FFF solid;border-radius:3px"class="css"/>
+    <!-- <label id="map_ln"></label> -->
+   <input type="text" name="jb.y"  id="Map_lat"style="border:#FFF solid;border-radius:3px"class="css"/>
+    <span id="Map_ts" style="border-radius:5px; border:#FFF solid;width: 100px;cursor:pointer;" onClick="Map_xy()">图上选择</span>
+    <hr style="color:#FFF"/>
+    <div style="padding-bottom:3px">消防安全检查</div>
+    单位选择： <select name="jb.dwsxid" onclick="danweishuxin()" id="danwei" style="border:#FFF solid; margin-bottom:2px; border-radius:3px">
+        <option value="1">请选择单位</option>
+    </select>
+   属性： <select name="jb.dwsx" id="danwei_shuxin" multiple="multiple"style="border:#FFF solid; margin-bottom:2px; border-radius:3px">
+
+        <option value="option1">1</option>
+		<option value="option2"> 2</option>
+		<option value="option3"> 3</option>
+		<option value="15">住宿</option>
+    </select>
+ 
+ 
+   状态： <select name="jb.dwxfaqzt" id="danwei" style="border:#FFF solid; margin-bottom:2px; border-radius:3px">
+        <option value="1">请选择状态</option>
+        
+    </select>
+	<!-- <select id="example"name="jb.dwsx"  multiple="multiple" >
+	
+		</select> 
+		<input type="hidden" id="hfexample" />-->
+<!-- 状态:<select id="example1" name="jb.dwxfaqzt"   multiple="multipleq">
+		<option value="option1">1</option>
+		<option value="option2"> 2</option>
+		<option value="option3"> 3</option>
+		<option value="option4">4</option>
+		</select> -->
+    器材类型：
+    <select name="jb.mhqstyle"  style="broder:#FFF solid; border-radius:3px">
+      <option value="1">干火灭火器</option>
+    </select>
+    重量：<select name="jb.mhqzl"  style="broder:#FFF solid; border-radius:3px">
+      <option value="1">2kg</option>
+    </select>
+    数量：
+    <input type="text"name="jb.mhqnum"   style="border:#FFF solid;border-radius:3px; margin-right:3px" class="css"/>
+    
+    品牌：
+    <input type="text" name="jb.mhqpp"  style="border:#FFF solid;border-radius:3px" class="css"/>
+     厂家：
+    <input type="text" name="jb.mhqcjname"  style="border:#FFF solid;border-radius:3px"class="css"/>
+    <br>
+    采集时状态：
+    <input type="text" name="jb.cjszt"  style="border:#FFF solid;border-radius:3px"class="css"/>
+<br>
+ 生产时间：
+    <input type="text" name="jb.mhqsctime"  style="border:#FFF solid;border-radius:3px"class="css"/>
+
+    登记人姓名：
+    <input type="text" name="jb.djrname"  style="border:#FFF solid;border-radius:3px"class="css"/>
+        <br>
+   登记时间：
+    <input type="text" name="jb.bydjtime"  style="border:#FFF solid;border-radius:3px"class="css"/>
+    保养人姓名：
+    <input type="text" name="jb.byrname"  style="border:#FFF solid;border-radius:3px"class="css"/>
+   
+保养的时间：
+    <input type="text" name="jb.byrtime"  style="border:#FFF solid;border-radius:3px"class="css"/>
+    <br>
+    采集时状态：
+    <input type="text"name="jb.cjszt"   style="border:#FFF solid;border-radius:3px"class="css"/>
+采集日期：<input type="text"name="jb.cjsctime"   style="border:#FFF solid;border-radius:3px"class="css"/>
+    药剂充装时间:<input type="date"name="jb.cjyjcztime"   style="border:#FFF solid;border-radius:3px"class="css"/>
+  <br>
+    更新后状态:<input type="text" name="jb.gxhzt"  style="border:#FFF solid;border-radius:3px"class="css"/>
+    更新后生产日期:<input type="date" name="jb.gxsctime"  style="border:#FFF solid;border-radius:3px"class="css"/>
+    更新后药剂充装时间:<input type="date" name="jb.gxyjcztime"  style="border:#FFF solid;border-radius:3px"class="css"/>
+  <br>  
+    设施检查名称:<input type="text"name="jb.ssname"   style="border:#FFF solid;border-radius:3px"class="css"/>
+    设施保养时状态:<input type="text" name="jb.ssbyszt"  style="border:#FFF solid;border-radius:3px"class="css"/>
+    设施更新后状态:<input type="text" name="jb.ssgxhzt"  style="border:#FFF solid;border-radius:3px"class="css"/>
+    等级属性:<input type="text" name="jb.djsx"  style="border:#FFF solid;border-radius:3px"class="css"/>
+    <br>
+     <input type="submit" style="background:#930; width:20%" value="提交">
+
+    </form>
+  </div>
+</div>
+
+
+<!--左侧目录树-->
+<ul id="Map_View" type="square">
+	   <!--一级目录-->
+       <li  class="Map_View_l1">分局1</li>
+       <li id="li1" class="Map_View_l1" style="margin-top:5px">分局2</li>
+       		 <!--二级目录-->
+             <ul show="true" id="ul1" class="Map_View_ul" type="square">
+                  <li  class="Map_View_l234">派出所1</li>
+                  <li  class="Map_View_l234">派出所2</li>
+             </ul>
+       <li id="li2" class="Map_View_l1" style="margin-top:5px">分局3</li>
+             <ul id="ul2" class="ul" type="square">
+                  <li  class="Map_View_l234">派出所1</li>
+                  <li class="Map_View_l234">派出所2</li>
+                  <li id="li3" class="Map_View_l234">派出所3</li>
+                  	  <!--三级目录-->
+                      <ul id="ul3" class="ul" type="square">
+                          <li  class="Map_View_l234">单位1</li>
+                          <li  class="Map_View_l234">单位2</li>
+                      </ul>
+             </ul>
+</ul>
+
+<!--我的查看 查看方式模块-->
+<div id="mylook_types">
+  <button onClick="" class="">按等级</button>
+  <button onClick="" class="">按安全状态</button>
+  <button onClick="" class="">按更新状态</button>
+  <button onClick="" class="">按品牌型号</button>
+  <div style="margin-top:5px">
+  <button onClick="" style="color:#00c; font-size:20px">统计</button>
+  <button onClick="" style=" color:#00c;font-size:20px">导出</button>
+  </div>
+</div>
+<div id="all_shebei">
+	<div class="shebei_detail">
+    
+    </div>
+</div>
+<!-- 显示柱状图div -->
+<div id="Map_coun"></div>
+<div id="Map_dongtai">
+  <div id="Map_box1"><a>法律法规</a>
+    <button onClick="" style="font-size:10px" class="dynamic">更多...</button>
+  </div>
+  <div id="Map_box2"><a>防火知识</a>
+    <button onClick="" style="font-size:10px" class="dynamic">更多...</button>
+  </div>
+  <div id="Map_box3"><a>逃生技巧</a>
+    <button onClick="" style="font-size:10px" class="dynamic">更多...</button>
+  </div>
+  <div id="Map_box4"><a>培训预约</a>
+    <button onClick="" style="font-size:10px" class="dynamic">更多...</button>
+  </div>
+</div>
+<div id="Map_banquan" >主办单位：兰州市大数据社会服务管理局 运行管理单位：兰州市大数据社会服务管理局<br/>
+  为了获得更好的浏览效果，推荐使用1920*1080分辨率，建议你使用IE9及以上版本浏览器登录本站点</div>
+  
+
+</body>
+
+<!--地图js  -->
+
+
+<script type="text/javascript">
+	var map = new BMap.Map("Map_allmap");    // 创建Map实例
+	map.centerAndZoom(("兰州"), 15);  // 初始化地图,设置中心点坐标和地图级别
+	map.addControl(new BMap.MapTypeControl());   //添加地图类型控件
+	map.setCurrentCity("兰州");          // 设置地图显示的城市 此项是必须设置的
+	map.enableScrollWheelZoom(true);     //开启鼠标滚轮缩放
+	//地图缩放控件
+	var top_right_navigation = new BMap.NavigationControl({anchor: BMAP_ANCHOR_TOP_RIGHT, type: BMAP_NAVIGATION_CONTROL_LARGE});  //左上角，添加默认
+	map.addControl(top_right_navigation);
+	   var content = '<div id="aleart">'+
+	   '单位名称：<input type="text" value="甘肃华悦"><br>'+
+	   '类&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp别：<input type="text" value="甘肃华悦"><br>'+
+	   '提醒原因：<input type="text" value="甘肃华悦"><br>'+
+	   '设施损坏：<input type="text" value="甘肃华悦"><br>'+
+	   '提醒级别：<input type="text" value="甘肃华悦">'+
+	  '</div>';
+	   var content_checking='<div class="fount_size">'+'名&nbsp&nbsp&nbsp&nbsp称：<input id="name" type="text" value="甘肃华悦"class="recommend">'+'&nbsp&nbsp&nbsp&nbsp详细类别：<input type="text" value="甘肃华悦"class="recommend"><br>'+'面&nbsp&nbsp&nbsp&nbsp积：<input type="text" value="甘肃华悦"class="recommend">'+'&nbsp&nbsp&nbsp&nbsp地&nbsp&nbsp&nbsp&nbsp址：<input type="text" value="甘肃华悦"class="recommend"><br>'+'营业执照：<input type="text" value="甘肃华悦"class="recommend">'+'&nbsp&nbsp&nbsp&nbsp联系人：<input type="text" value="甘肃华悦"class="recommend"><br>'+'类&nbsp&nbsp&nbsp&nbsp别：<input type="text" value="甘肃华悦"class="recommend">'+'&nbsp&nbsp&nbsp&nbsp检查状态：<input type="text" value="甘肃华悦"class="recommend"><br>'+'灭火器状态：<input type="text" value="甘肃华悦"class="recommend">'+'&nbsp&nbsp&nbsp&nbsp品&nbsp&nbsp&nbsp&nbsp牌：<input type="text" value="甘肃华悦"class="recommend"><br>'+'采集时状态：<input type="text" value="甘肃华悦"class="recommend">'+'&nbsp&nbsp&nbsp&nbsp更新后状态：<input type="text" value="甘肃华悦"class="recommend"><br>'+'登记人：<input type="text" value="甘肃华悦"class="recommend">'+'&nbsp&nbsp&nbsp&nbsp时&nbsp&nbsp&nbsp&nbsp间：<input type="text" value="甘肃华悦"class="recommend"><br>'+'设施维护状态：<input type="text" value="甘肃华悦"class="recommend">'+'&nbsp&nbsp&nbsp&nbsp保养时状态：<input type="text" value="甘肃华悦"class="recommend"><br>'+'更新后状态：<input type="text" value="甘肃华悦"class="recommend">'+'&nbsp&nbsp&nbsp&nbsp设施品牌：<input type="text" value="甘肃华悦"class="recommend"></div>';
+	   //id 名称 name
+	  
+	  
+	  
+	  
+	   var content_recommend='<div class="fount_size">'+'单位名称：<input type="text" value="甘肃华悦"class="recommend">'+'<br>类&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp别：<input type="text" value="甘肃华悦"class="recommend">'+'<br>原设备型号：<input type="text" value="甘肃华悦"class="recommend">'+'<br>推荐选择：<input type="text" value="甘肃华悦"class="recommend">'+'<br>品牌：<input type="text" value="甘肃华悦" class="recommend">'+' 型号：<input type="text" value="甘肃华悦"class="recommend">'+'证书：<input type="text" value="甘肃华悦"class="recommend">'+'价格：<input type="text" value="甘肃华悦"class="recommend">'+'咨询：<input type="text" value="甘肃华悦"class="recommend">'+'<input type="button" value="有意向"class="recommend"><br>'+'<input type="button" value="查看全部设备"class="recommend"></div>';
+
+	var geolocation = new BMap.Geolocation();
+	geolocation.getCurrentPosition(function(r){
+		if(this.getStatus() == BMAP_STATUS_SUCCESS){
+			var mk = new BMap.Marker(r.point);
+			map.addOverlay(mk);
+			map.panTo(r.point);
+			//alert('您的位置：'+r.point.lng+','+r.point.lat);
+		}
+		else {
+			alert('failed'+this.getStatus());
+		}        
+	},{enableHighAccuracy: true})
+	
+	map.sent
+function Map_xy(){
+	map.addEventListener("click",function(e){
+	$('#Map_lng').val(e.point.lng);
+	$('#Map_lat').val(e.point.lat);
+   });
+	}		
+	
+function show()
+{
+document.getElementById("Map_report").style.display="block";
+document.getElementById("Features_4").style.display = "none";
+document.getElementById("Map_allmap").style.left="3%";
+document.getElementById("Map_View").style.display="none";
+document.getElementById("mylook_types").style.display="none";
+document.getElementById('Map_coun').style.display="none";
+}
+
+function div_close()
+{
+document.getElementById("Map_report").style.display = "none";
+}
+function View_show(){
+	document.getElementById('Map_coun').style.display="none";
+	document.getElementById("Map_report").style.display = "none";
+	document.getElementById("Features_4").style.display = "block";
+	document.getElementById("Map_allmap").style.left="25%";
+	document.getElementById("Map_View").style.display="block";
+	}
+	
+	
+/*  */
+
+$(function(){
+
+	  $("#example").multiselect({
+	    header: false,
+	    height: 200,
+	    minWidth: 100,
+		selectedList: 10,//预设值最多显示10被选中项
+	    hide: ["explode", 500],
+	    noneSelectedText: '请选择',
+	    close: function(){
+	      var values= $("#example").val();
+		  $("#hfexample").val(values);
+		}
+});
+	
+});	
+function ss()
+{
+
+$(function(){
+
+console.log("---------------------");
+	  $("#danwei_shuxin").multiselect({
+	    header: false,
+	    height: 200,
+	    minWidth: 100,
+		selectedList: 10,//预设值最多显示10被选中项
+	    hide: ["explode", 500],
+	    noneSelectedText: '请选择',
+	    close: function(){
+	      var values= $("#danwei_shuxin").val();
+		  $("#danwei_shuxin").val(values);
+		}
+});
+	
+});	}
+$(function(){
+
+		  $("#danwei_shuxin").multiselect({
+		    header: false,
+		    height: 200,
+		    minWidth: 100,
+			selectedList: 10,//预设值最多显示10被选中项
+		    hide: ["explode", 500],
+		    noneSelectedText: '请选择',
+		    close: function(){
+		      var values= $("#danwei_shuxin").val();
+			  $("#danwei_shuxin").val(values);
+			}
+	});
+		
+	});	
+</script>
+<script type="text/javascript">
+<!--我要查看-->
+/* function View_show(){
+	
+	} */
+	
+<!--统计分析-->
+function account(){
+		document.getElementById("mylook_types").style.display="block";
+		}
+		
+
+$(document).ready(function(){
+  $(".ul").hide();
+})
+$(document).ready(function()
+{
+  $("#li1").click(function()
+  {
+  $("#ul1").toggle();
+  });
+});
+$(document).ready(function()
+{
+  $("#li2").click(function()
+  {
+  $("#ul2").toggle();
+  });
+});
+$(document).ready(function()
+{
+  $("#li3").click(function()
+  {
+  $("#ul3").toggle();
+  });
+});
+/* 统计分析显示柱状图 */
+function Map_count(){
+	 document.getElementById('Map_coun').style.display="block";
+	 // 基于准备好的dom，初始化echarts图表
+        var myChart = echarts.init(document.getElementById('Map_coun')); 
+		  var option = {
+            tooltip: {
+                show: true
+            },
+            legend: {
+                data:['统计图']
+            },
+            xAxis : [
+                {
+                    type : 'category',
+                    data : ["基本信息","等级属性","设施安全状态","设备及器材更新更换记载","品牌管理","分类统计"]
+                }
+            ],
+            yAxis : [
+                {
+                    type : 'value'
+                }
+            ],
+            series : [
+                {
+                    "name":"统计图",
+                    "type":"bar",
+                    "data":[5, 20, 40, 10, 10, 20]
+                }
+            ]
+        };
+
+        // 为echarts对象加载数据 
+        myChart.setOption(option); 
+
+}
+//到期提醒
+function Map_warn(){
+	document.getElementById('Map_coun').style.display="none";
+	var point = new BMap.Point(103.83523, 36.064336)//地图覆盖物添加
+	var marker = new BMap.Marker(point); //根据点来创建点状覆盖物
+	//marker.setAnimation(BMAP_ANIMATION_BOUNCE); //跳动的动画
+	marker.addEventListener("click",getAttr);
+　　 map.addOverlay(marker);//把这个覆盖物加载到地图上
+    var opts = { 
+				width : 220,     // 信息窗口宽度
+				height: 150,     // 信息窗口高度
+				title : "详细信息" , // 信息窗口标题
+				enableMessage:true//设置允许信息窗发送短息
+			   };
+   var infoWindow = new BMap.InfoWindow(opts);
+      infoWindow.setContent(content);// 信息框添加信息
+   function getAttr(){
+		//var p = marker.getPosition();    
+		this.openInfoWindow(infoWindow,point); //开启信息窗口
+		
+	}
+	}
+
+
+//消防检查
+function Map_checking(){
+	document.getElementById('Map_coun').style.display="none";
+	var point = new BMap.Point(103.83523, 36.064336)//地图覆盖物添加
+	var marker = new BMap.Marker(point); //根据点来创建点状覆盖物
+	//marker.setAnimation(BMAP_ANIMATION_BOUNCE); //跳动的动画
+	marker.addEventListener("click",getAttr);
+　　 map.addOverlay(marker);//把这个覆盖物加载到地图上
+    var opts = { 
+				width : 220,     // 信息窗口宽度
+				height: 150,     // 信息窗口高度
+				title : "详细信息" , // 信息窗口标题
+				enableMessage:true//设置允许信息窗发送短息
+			   };
+   var infoWindow = new BMap.InfoWindow(opts);
+   
+    infoWindow.setContent(content_checking);// 信息框添加信息
+   function getAttr(){
+		//var p = marker.getPosition();    
+		this.openInfoWindow(infoWindow,point); //开启信息窗口
+		
+	}
+	}
+//设备推荐
+function Map_recommend(){
+	document.getElementById('Map_coun').style.display="none";
+	 var point = new BMap.Point(103.83523, 36.064336)//地图覆盖物添加
+	var marker = new BMap.Marker(point); //根据点来创建点状覆盖物
+	//marker.setAnimation(BMAP_ANIMATION_BOUNCE); //跳动的动画
+	marker.addEventListener("click",getAttr);
+　　 map.addOverlay(marker);//把这个覆盖物加载到地图上
+    var opts = { 
+				width : 220,     // 信息窗口宽度
+				height: 150,     // 信息窗口高度
+				title : "详细信息" , // 信息窗口标题
+				enableMessage:true//设置允许信息窗发送短息
+			   };
+   var infoWindow = new BMap.InfoWindow(opts);
+   
+   infoWindow.setContent(content_recommend);// 信息框添加信息
+   function getAttr(){
+		//var p = marker.getPosition();    
+		this.openInfoWindow(infoWindow,point); //开启信息窗口
+		
+	}
+	}
+</script>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="${base}/FireUI/css/peixun.css" type="text/css"/>
+<title>培训预约</title>
+</head>
+<body> 
+<div id="px_title">我知消防</div>
+<hr class="px_hr"></hr>
+<div class="px_midd">
+<div  class="px_fvt">法律法规
+<ul  class="px_ul_flfg"type="square" >
+        <li>中华人民共和国消防法</li>
+    </ul>
+</div>
+ <hr class="px_hr_or"></hr>
+ <div class="px_fgdetail">
+ 	<p>中华人民共和国消防法</p>
+    <p>总则。。。。。</p>
+ </div>
+</div>
+ 
+ <!--预约具体事项-->
+ <div id="px_yy">
+ 	单位名称<input type="text" style="margin:10px" />
+    单位地址<input type="text"style="margin:10px"/><br>
+    单位面积<input type="text" style="margin:10px" />
+    单位类别<input type="text"style="margin:10px"/><br>
+    负&nbsp;责&nbsp;人&nbsp;<input type="text" style="margin:10px" />
+    联系方式<input type="number"style="margin:10px"/><br>
+    预约内容<br/>
+    <textarea  class="px_textarea"rows="8" cols="40" >请选择输入内容</textarea>
+    <div style="text-align:center; margin-top:5px">
+    <button id="btn_submit" class="px_btn_m" onclick="yy_submit()">提交</button>
+    <button id="btn_reset"  class="px_btn_m" onclick="yy_reset()">重置</button></div>
+ </div>
+<!--预约按钮-->
+<button id="btn_pxyy" onclick="yy_click()">培训预约</button>
+</body>
+</html>
+<script type="text/javascript">
+    <!--培训预约-->
+ function yy_click(){
+	 document.getElementById("px_yy").style.display="block";
+	 }
+	<!--提交预约-->
+ function yy_submit(){
+	  document.getElementById("px_yy").style.display="none";  
+	 }
+	 <!--重置预约内容-->
+ function yy_reset(){
+	 
+	 document.getElementById("px_yy").style.display="block";
+	 }	 
+
+</script>

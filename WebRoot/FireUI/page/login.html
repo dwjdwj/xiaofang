@@ -1,0 +1,75 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+	<link rel="stylesheet" href="${base}/FireUI/css/login.css" type="text/css"/>
+	<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=dDQ5jKyvkgoieva5KT79krLGqGEF7MzM"></script>
+	<title>登录界面</title>
+</head>
+<body> 
+	 <div id="loginmap"></div>
+     <div id="login_center">
+     <div class="login_title" style="">智慧消防设施资源一张图</div>
+    </div>
+    <form id="form-login" method="post" action="${base}/login">
+     <!-- style="text-align:center; -->
+<div id="login">
+<div style="margin-left: 30%">
+    <img src="FireUI/img/user.png" style="width:20px;height:20px; margin-right:20px; margin-top:2%"/>用户登录<br>
+    
+    <input id="username" name="username" type="text"  autocomplete="off"value="" placeholder="电子邮箱/手机号" style="background-color:#F1F1F1; border-radius:5px" />${user_name!''}<br>
+
+    <input  id="password" name="password"type="password"  placeholder="请输入密码" autocomplete="off" value="" style="background-color:#F1F1F1; margin-top:3%; border-radius:5px" /><br>
+
+    <input type="text" name="vcode" style="background-color:#F1F1F1; margin-top:3%; border-radius:5px;width: 95px;">
+    <img onclick="this.src=('${base}/verify?reload='+(new Date()).getTime())" class="vcode" src="${base}/verify" style="height: 25px; border-radius:5px; margin-top: 3% ;cursor: hand"  alt="">
+    <span style="background-color: red">${verifyCode!''}</span>
+    <br>
+    <label class="checkbox" for="chk11">
+<input style="height: auto;" id="chk11" type="checkbox" name="remember_me" >记住账号</label>
+    <button id="bt_login" onClick="login_click()" style="cursor: pointer">登录</button>
+   </div>     
+</div>
+    </form>
+<script type="text/javascript">
+	// 百度地图API功能
+	var map = new BMap.Map("loginmap");    // 创建Map实例
+	map.centerAndZoom(("兰州"), 15);  // 初始化地图,设置中心点坐标和地图级别
+	map.addControl(new BMap.MapTypeControl());   //添加地图类型控件
+	map.setCurrentCity("兰州");          // 设置地图显示的城市 此项是必须设置的
+	map.enableScrollWheelZoom(false);     //开启鼠标滚轮缩放
+	map.disableDragging(); //禁止拖拽
+	var geolocation = new BMap.Geolocation();
+	geolocation.getCurrentPosition(function(r){
+		if(this.getStatus() == BMAP_STATUS_SUCCESS){
+			var mk = new BMap.Marker(r.point);
+			map.addOverlay(mk);
+			map.panTo(r.point);
+			//alert('您的位置：'+r.point.lng+','+r.point.lat);
+		}
+		else {
+			alert('failed'+this.getStatus());
+		}        
+	},{enableHighAccuracy: true})
+	map.sent
+	
+function login_click(){
+	
+	var name=document.getElementById("tv_username").value;
+	var pwd=document.getElementById("tv_pwd").value;
+	if(name=="Username"||name==""){
+		alert("没输入名字");
+		return;
+		}
+    if(pwd=="Password"||pwd==""){
+		alert("没输入密码");
+		return;
+		}
+	alert("chengong");		
+	}
+</script>
+
+</body>
+</html>
