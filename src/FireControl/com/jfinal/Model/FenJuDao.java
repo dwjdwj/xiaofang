@@ -48,9 +48,24 @@ public class FenJuDao extends Model<FenJuDao>{
 	}
 		//查询单位属性和状态
 		public static List<Record> DanWeiZt(String zt) {
-			System.out.println(zt+":传值");
+			System.out.println(zt+":zt传值");
 			List<Record> zhaungtai = Db.find("select * from dwsxzt_info where dwsxid="+zt+"");
 			
 			return zhaungtai;
 	}
+		//查询单位属性和状态
+public static List<Record> Qicaitype() {
+		
+			List<Record> qicaileix = Db.find("select * from mhqlx_info ");
+			
+			return qicaileix;
+	}
+
+//根据器材类型查询出对应单位
+public static List<Record> QCDanWei(String QCDanWei) {
+	System.out.println(QCDanWei+":QCDanWei传值");
+	List<Record> zhaungtai = Db.find("select * from mhqzl_info where mhqid="+QCDanWei+"");
+	
+	return zhaungtai;
+}
 }

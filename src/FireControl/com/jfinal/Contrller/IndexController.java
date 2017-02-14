@@ -7,6 +7,7 @@ import com.jfinal.plugin.ehcache.CacheName;
 import com.jfinal.plugin.ehcache.RenderInfo;
 import com.jfinal.template.ext.directive.Str;
 
+import FireControl.com.jfinal.Entity.Collection;
 import FireControl.com.jfinal.Model.FenJuDao;
 import FireControl.com.jfinal.Model.JiBenDao;
 import FireControl.com.jfinal.Model.Role;
@@ -84,24 +85,68 @@ public class IndexController extends Controller {
 	     }
 		
 //根据单位查询单位属性he单位状态
-				@ActionKey("/zhuangtai")
-				 public void DanWeizt() {
-					String zt=getPara("zt");
-
-				renderJson(FenJuDao.DanWeiZt(zt));
+@ActionKey("/zhaungtai")
+public void DanWeizt() {
+String zt=getPara("zt");
+renderJson(FenJuDao.DanWeiZt(zt));
 			     }
+
+//前端触发事件，自动查询器材类型
+@ActionKey("/qicaitype")
+public void QCType() {
+
+renderJson(FenJuDao.Qicaitype());
+			     }
+//根据器材类型查询出单位
+@ActionKey("/QCDanWei")
+public void QCDanWei() {
+	String QCDanWei=getPara("QCDanWei");
+renderJson(FenJuDao.QCDanWei(QCDanWei));
+			     }
+
 //添加数据到数据库
 	@ActionKey("/add")
-	 public void addUser() {
+	 public void AddCollection() {
     //从页面获取属性
-		
-	/*	
-		JiBenDao JiBen_Dao = getModel(JiBenDao.class);
-System.out.println(JiBen_Dao+":ooo");*/
-		
-		System.out.println(getPara("")+":ll");
-/*JiBenDao.AddAll(getParaValues());*/
+		Collection cn= new Collection();
+		cn.setFjid(getPara("jb.fjid"));
+		cn.setPcsid(getPara("jb.pcsid"));
+		cn.setSqid(getPara("jb.sqid"));
+		cn.setDwname(getPara("jb.dwname"));
+		cn.setYyzzid(getPara("jb.yyzzid"));
+		cn.setGlname(getPara("jb.glname"));
+		cn.setDwaddress(getPara("jb.dwaddress"));
+		cn.setDwmj(getPara("jb.dwmj"));
+		cn.setIphone(getPara("jb.iphone"));
+		cn.setX(getPara("jb.x"));
+		cn.setY(getPara("jb.y"));
+		cn.setDwsxid(getPara("jb.dwsxid"));
+		cn.setDwsx(getPara("jb.dwsx"));
+		cn.setDwxfaqzt(getPara("jb.dwxfaqzt"));
+		cn.setMhqstyle(getPara("jb.mhqstyle"));
+		cn.setMhqzl(getPara("jb.mhqzl"));
+		cn.setMhqnum(getPara("jb.mhqnum"));
+		cn.setMhqpp(getPara("jb.mhqpp"));
+		cn.setMhqcjname(getPara("jb.mhqcjname"));
+		cn.setMhqsctime(getPara("jb.mhqsctime"));
+		cn.setDjrname(getPara("jb.djrname"));
+		cn.setByrname(getPara("jb.byrname"));
+		cn.setByrtime(getPara("jb.byrtime"));
+		cn.setCjszt(getPara("jb.setcjsctime"));
+		cn.setCjsctime(getPara("jb.cjsctime"));
+		cn.setCjyjcztime(getPara("jb.cjyjcztime"));
+		cn.setGxhzt(getPara("jb.gxhzt"));
+		cn.setGxsctime(getPara("jb.gxsctime"));
+		cn.setGxyjcztime(getPara("jb.gxyjcztime"));
+		cn.setBydjtime(getPara("jb.bydjtime"));
+		cn.setSsname(getPara("jb.ssname"));
+		cn.setSsbyszt(getPara("jb.ssbyszt"));
+		cn.setSsgxhzt(getPara("jb.ssgxhzt"));
+		cn.setDjsx(getPara("jb.djsx"));
+		cn._setAttrs(cn);
+		boolean add = JiBenDao.AddAll(cn);
 
+redirect("/index?返回值：="+add+"",true);
     }
 
 	}

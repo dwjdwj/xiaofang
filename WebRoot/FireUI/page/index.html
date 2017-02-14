@@ -6,6 +6,7 @@
 <link rel="stylesheet" href="${base}/FireUI/css/index.css" type="text/css"/>
 <link rel="stylesheet" href="${base}/FireUI/css/jquery-ui.css" type="text/css"/>
 <link rel="stylesheet" href="${base}/FireUI/css/jquery.multiselect.css" type="text/css"/>
+<link rel="stylesheet" href="${base}/FireUI/css/select2.min.css" type="text/css"/>
 <link rel="stylesheet" href="${base}/FireUI/css/dynamic.css" type="text/css"/>
 <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=ZOvYT7GLTm3wA5KryqVuwdYgbL2zsD7e"></script>
 <script type="text/javascript" src="${base}/FireUI/js/jquery.1.7.2.min.js"></script>
@@ -13,6 +14,7 @@
 <script type="text/javascript" src="${base}/FireUI/js/echarts.js"></script>
 <script type="text/javascript" src="${base}/FireUI/js/jquery.multiselect.js"></script>
 <script type="text/javascript" src="${base}/FireUI/js/index_input.js"></script>
+<script type="text/javascript" src="${base}/FireUI/js/select2.min.js"></script>
 <title>兰州市消防一张图</title>
 </head>
 <body >
@@ -26,7 +28,8 @@
    	注销</a></span>
   </div>
   <div id="MAp_button">
-    <input type="button"id="bt" value="我要采集" onClick="show()" onMouseUp="fenju_id()" onMouseOver="danwei()">
+    <input type="button"id="bt" value="我要采集" onClick="show()" onMouseUp="fenju_id()"
+    onMouseOver="danwei()"onMouseDown="qicaitype()">
     <input type="button" value="我要查看" onClick="View_show()">
     <input type="button" value="我要编辑" onClick="">
   </div>
@@ -36,7 +39,8 @@
   <button onClick="Map_count()" >统计分析</button>
   <button onClick="Map_checking()" >消防检查</button>
   <button onClick="Map_warn()">到期提醒</button>
-  <button onClick="Map_recommend()">设备推荐</button></div>
+  <button onClick="Map_recommend()">设备推荐</button>
+  </div>
 
 <div id="Map_report">
   <div id="Map_jx">基本信息</div>
@@ -44,110 +48,99 @@
     <input type="text" id="div_close" style=" width:25px; height:18px; font-size:12px; text-align:center; " value="关闭"  onClick="div_close()"/>
   </div>
   <div id="Map_jx1">
-  <form action="add">
-    所属分局：<select  name="jb.fjid" id="fjname"onclick="pcs()" style="border:#FFF solid; margin-bottom:2px; border-radius:3px">
-    
-    <option >请选择分局</option>
-    
+  <form action="add" style="width: 100%;line-height: 20px;"method="post">
+    所属分局：<select  				name="jb.fjid" id="fjname"onclick="pcs()" style="    WIDTH: 16%;">
+    <option >请选择分局</option> 
     </select>
- 所属派出所： <select  name="jb.pcsid" id="pcsname" onclick="sq()" style="border:#FFF solid; margin-bottom:2px; border-radius:3px">
-<option>请选择派出所</option>
+ 所属派出所： <select  				name="jb.pcsid" id="pcsname" onclick="sq()" style="">
+<option>请选择派出所</option>	
 </select>
-所属派社区： <select  id="sqname"name="jb.sqid" style="border:#FFF solid; margin-bottom:2px; border-radius:3px">
+所属派社区： <select  id="sqname"	name="jb.sqid" style="">
  <option>请选择社区</option></select> <br>
  单位名称：
- <input type="text"name="jb.dwname" style="border:#FFF solid; border-radius:3px;"  class="css"/>
+ <input type="text"				name="jb.dwname" style="MARGIN-LEFT: -4PX;"  class="css"/>
+    营业执照号：
+    <input type="text" 			name="jb.yyzzid" style=""class="css"/>
+   
+
+      所属负责人：
+    <input type="text" 			name="jb.glname" style=""class="css"/> <BR>
 地址：
-    <input type="text"name="jb.dwaddress"  style="border:#FFF solid;border-radius:3px"class="css"/>
+    <input type="text"			name="jb.dwaddress"  style=""class="css"/>
    面积：
-    <input type="text" name="jb.dwmj"style="border:#FFF solid;border-radius:3px"class="css"/>
-   负&nbsp;&nbsp;责&nbsp;人：
-    <input type="text" name="jb.glname" style="border:#FFF solid;border-radius:3px"class="css"/> 
-<br>
-    营业执照：
-    <input type="text" name="jb.yyzzid" style="border:#FFF solid;border-radius:3px"class="css"/>
-   
+    <input type="text" 			name="jb.dwmj"style=""class="css"/>
     电话：
-    <input type="text" name="jb.iphone" style="border:#FFF solid;border-radius:3px"class="css"/>
-   
+    <input type="text" 			name="jb.iphone" style=""class="css"/>
+<br>
+ 
     位置：
-    <input type="text" name="jb.x" id="Map_lng"style="border:#FFF solid;border-radius:3px"class="css"/>
-    <!-- <label id="map_ln"></label> -->
-   <input type="text" name="jb.y"  id="Map_lat"style="border:#FFF solid;border-radius:3px"class="css"/>
+    <input type="text" 			name="jb.x" id="Map_lng"style=""class="css"/>
+   
+   <input type="text" 			name="jb.y"  id="Map_lat"style=""class="css"/>
     <span id="Map_ts" style="border-radius:5px; border:#FFF solid;width: 100px;cursor:pointer;" onClick="Map_xy()">图上选择</span>
     <hr style="color:#FFF"/>
     <div style="padding-bottom:3px">消防安全检查</div>
-    单位选择： <select name="jb.dwsxid" onclick="danweishuxin()" id="danwei" style="border:#FFF solid; margin-bottom:2px; border-radius:3px">
+    单位选择： <select 				name="jb.dwsxid" onclick="danweishuxin()" onMouseUp="zhuangtai()"id="danwei" style="">
         <option value="1">请选择单位</option>
-    </select>
-   属性： <select name="jb.dwsx" id="danwei_shuxin" multiple="multiple"style="border:#FFF solid; margin-bottom:2px; border-radius:3px">
+ </select>
+ <br>
+   单位属性： 
+ <select  id="danwei_shuxin"	name="jb.dwsx"class="js-example-basic-multiple" multiple="multiple"style="width: 245px;">
+          
+      </select>  
+  
+  单位状态：
+ <select id="danwei_zhuangtai"	name="jb.dwxfaqzt"class="js-example-basic-multiple" multiple="multiple"style="width: 245px;">
+          
+      </select>  
 
-        <option value="option1">1</option>
-		<option value="option2"> 2</option>
-		<option value="option3"> 3</option>
-		<option value="15">住宿</option>
-    </select>
- 
- 
-   状态： <select name="jb.dwxfaqzt" id="danwei" style="border:#FFF solid; margin-bottom:2px; border-radius:3px">
-        <option value="1">请选择状态</option>
-        
-    </select>
-	<!-- <select id="example"name="jb.dwsx"  multiple="multiple" >
-	
-		</select> 
-		<input type="hidden" id="hfexample" />-->
-<!-- 状态:<select id="example1" name="jb.dwxfaqzt"   multiple="multipleq">
-		<option value="option1">1</option>
-		<option value="option2"> 2</option>
-		<option value="option3"> 3</option>
-		<option value="option4">4</option>
-		</select> -->
+     
+<br>
     器材类型：
-    <select name="jb.mhqstyle"  style="broder:#FFF solid; border-radius:3px">
-      <option value="1">干火灭火器</option>
+    <select 					name="jb.mhqstyle" id="mhqstyle"onclick ="QCDanWei()" >
+      
     </select>
-    重量：<select name="jb.mhqzl"  style="broder:#FFF solid; border-radius:3px">
-      <option value="1">2kg</option>
+    重量：<select 					name="jb.mhqzl"  id="mhqstyle_zl" style="">
+   
     </select>
     数量：
-    <input type="text"name="jb.mhqnum"   style="border:#FFF solid;border-radius:3px; margin-right:3px" class="css"/>
+    <input type="text"			name="jb.mhqnum"   style="margin-right:3px" class="css"/>
     
     品牌：
-    <input type="text" name="jb.mhqpp"  style="border:#FFF solid;border-radius:3px" class="css"/>
+    <input type="text" 			name="jb.mhqpp"  class="css"/>
+    <br>
      厂家：
-    <input type="text" name="jb.mhqcjname"  style="border:#FFF solid;border-radius:3px"class="css"/>
-    <br>
-    采集时状态：
-    <input type="text" name="jb.cjszt"  style="border:#FFF solid;border-radius:3px"class="css"/>
-<br>
- 生产时间：
-    <input type="text" name="jb.mhqsctime"  style="border:#FFF solid;border-radius:3px"class="css"/>
-
-    登记人姓名：
-    <input type="text" name="jb.djrname"  style="border:#FFF solid;border-radius:3px"class="css"/>
-        <br>
-   登记时间：
-    <input type="text" name="jb.bydjtime"  style="border:#FFF solid;border-radius:3px"class="css"/>
-    保养人姓名：
-    <input type="text" name="jb.byrname"  style="border:#FFF solid;border-radius:3px"class="css"/>
+    <input type="text" 			name="jb.mhqcjname"  style=""class="css"/>
    
+ 生产时间：
+    <input type="date" 			name="jb.mhqsctime"  style=""class="css"/>
+ <br>
+    登记人姓名：
+    <input type="text" 			name="jb.djrname"  style=""class="css"/>
+       
+   登记时间：
+    <input type="date" 			name="jb.bydjtime"  style=""class="css"/>
+    保养人姓名：
+    <input type="text" 			name="jb.byrname"  style=""class="css"/>
+   <br> 
 保养的时间：
-    <input type="text" name="jb.byrtime"  style="border:#FFF solid;border-radius:3px"class="css"/>
-    <br>
+    <input type="date" 			name="jb.byrtime"  style=""class="css"/>
+
     采集时状态：
-    <input type="text"name="jb.cjszt"   style="border:#FFF solid;border-radius:3px"class="css"/>
-采集日期：<input type="text"name="jb.cjsctime"   style="border:#FFF solid;border-radius:3px"class="css"/>
-    药剂充装时间:<input type="date"name="jb.cjyjcztime"   style="border:#FFF solid;border-radius:3px"class="css"/>
-  <br>
-    更新后状态:<input type="text" name="jb.gxhzt"  style="border:#FFF solid;border-radius:3px"class="css"/>
-    更新后生产日期:<input type="date" name="jb.gxsctime"  style="border:#FFF solid;border-radius:3px"class="css"/>
-    更新后药剂充装时间:<input type="date" name="jb.gxyjcztime"  style="border:#FFF solid;border-radius:3px"class="css"/>
-  <br>  
-    设施检查名称:<input type="text"name="jb.ssname"   style="border:#FFF solid;border-radius:3px"class="css"/>
-    设施保养时状态:<input type="text" name="jb.ssbyszt"  style="border:#FFF solid;border-radius:3px"class="css"/>
-    设施更新后状态:<input type="text" name="jb.ssgxhzt"  style="border:#FFF solid;border-radius:3px"class="css"/>
-    等级属性:<input type="text" name="jb.djsx"  style="border:#FFF solid;border-radius:3px"class="css"/>
+    <input type="text"			name="jb.cjszt"   style=""class="css"/>
+采集日期：<input type="date"		name="jb.cjsctime"   style=""class="css"/>
+    <br>
+    药剂充装时间:<input type="date"	name="jb.cjyjcztime"   style=""class="css"/>
+ 
+    更新后状态:<input type="text" 	name="jb.gxhzt"  style=""class="css"/>
+    更新后生产日期:<input type="date" 	name="jb.gxsctime"  style=""class="css"/>
+<br>更新后药剂充装时间:
+<input type="date"			 name="jb.gxyjcztime"  style=""class="css"/>
+
+    设施检查名称:<input type="text"	name="jb.ssname"   style=""class="css"/>
+    设施保养时状态:<input type="text" 	name="jb.ssbyszt"  style=""class="css"/>
+<br>设施更新后状态:<input type="text"name="jb.ssgxhzt"  style=""class="css"/>
+  等级属性:<input type="text" 		name="jb.djsx"  style=""class="css"/>
     <br>
      <input type="submit" style="background:#930; width:20%" value="提交">
 
@@ -286,62 +279,7 @@ function View_show(){
 	document.getElementById("Map_allmap").style.left="25%";
 	document.getElementById("Map_View").style.display="block";
 	}
-	
-	
-/*  */
 
-$(function(){
-
-	  $("#example").multiselect({
-	    header: false,
-	    height: 200,
-	    minWidth: 100,
-		selectedList: 10,//预设值最多显示10被选中项
-	    hide: ["explode", 500],
-	    noneSelectedText: '请选择',
-	    close: function(){
-	      var values= $("#example").val();
-		  $("#hfexample").val(values);
-		}
-});
-	
-});	
-function ss()
-{
-
-$(function(){
-
-console.log("---------------------");
-	  $("#danwei_shuxin").multiselect({
-	    header: false,
-	    height: 200,
-	    minWidth: 100,
-		selectedList: 10,//预设值最多显示10被选中项
-	    hide: ["explode", 500],
-	    noneSelectedText: '请选择',
-	    close: function(){
-	      var values= $("#danwei_shuxin").val();
-		  $("#danwei_shuxin").val(values);
-		}
-});
-	
-});	}
-$(function(){
-
-		  $("#danwei_shuxin").multiselect({
-		    header: false,
-		    height: 200,
-		    minWidth: 100,
-			selectedList: 10,//预设值最多显示10被选中项
-		    hide: ["explode", 500],
-		    noneSelectedText: '请选择',
-		    close: function(){
-		      var values= $("#danwei_shuxin").val();
-			  $("#danwei_shuxin").val(values);
-			}
-	});
-		
-	});	
 </script>
 <script type="text/javascript">
 <!--我要查看-->
@@ -487,3 +425,45 @@ function Map_recommend(){
 	}
 </script>
 </html>
+ <script type="text/javascript">
+ $(document).ready(function() {  
+     $(".js-example-basic-single").select2(); //单选  
+     $(".js-example-basic-multiple").select2(); //多选  
+
+     $(".js-example-placeholder-single").select2({ //允许清除  
+         placeholder: "Select a state", //默认提示语  
+         allowClear: true  
+     });  
+
+     $(".js-example-placeholder-multiple").select2({  
+         placeholder: "Select a state" //默认提示语  
+     });  
+
+
+     var data = [{  
+         id: 0,  
+         text: 'enhancement'  
+     }, {  
+         id: 1,  
+         text: 'bug'  
+     }, {  
+         id: 2,  
+         text: 'duplicate'  
+     }, {  
+         id: 3,  
+         text: 'invalid'  
+     }, {  
+         id: 4,  
+         text: 'wontfix'  
+     }];  
+
+     $(".js-example-data-array").select2({  
+         data: data  
+     })  
+
+     $(".js-example-data-array-selected").select2({  
+         data: data  
+     })  
+
+ });  
+    </script>

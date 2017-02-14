@@ -10,7 +10,7 @@ body, html {
 	height: 100%;
 	overflow: hidden;
 	margin:0;
-	font-family:"微软雅黑"
+	font-family: monospace;
 	}
 #Map_title{
 	width: 94%;
@@ -53,7 +53,7 @@ input{
 	box-shadow: 0 0 3px  #000099;
 	display:none;
 	
-    width: 54%;
+    width: 50%;
     height: 68%;
 	 
 	}			
@@ -121,7 +121,7 @@ input{
     padding-left:2%;
 	padding-top:1%}	
 .css{
-	width:13%
+	width:15%
 	}
 .css_fc{
 	width:13%;

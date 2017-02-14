@@ -70,7 +70,7 @@ function danwei(){
 //根据单位查询单位属性
 function danweishuxin(){
 var dwshuxin=document.getElementById("danwei").value
-console.log("进入")
+
 console.log(dwshuxin)
 	$.ajax({
 	     url: "/FireControl/danweishuxin",
@@ -90,9 +90,9 @@ console.log(dwshuxin)
 	});}
 //根据单位查询单位属性
 function zhuangtai(){
-var dwshuxin=document.getElementById("danwei").value
+var zt=document.getElementById("danwei").value
 console.log("进入")
-console.log(dwshuxin)
+console.log(zt)
 	$.ajax({
 	     url: "/FireControl/zhaungtai",
 	    type: "post",
@@ -102,10 +102,48 @@ console.log(dwshuxin)
 	    success: function (data) {
 	    	console.log("确定进入此方法-------")
 	    	console.log(data)
-	    	//$("#danwei_shuxin").empty();
+	    	$("#danwei_zhuangtai").empty();
 	    	for(var i=0;i<data.length;i++){ 
-    		$("#danwei_shuxin").append("<option value="+data[i].id+">"+data[i].dwsxname+"</option>");
+    		$("#danwei_zhuangtai").append("<option value="+data[i].id+">"+data[i].sxztjcname+"</option>");
     }
 	}
 	});}
+//查询器材类型
+function qicaitype(){
 
+		$.ajax({
+		     url: "/FireControl/qicaitype",
+		    type: "post",
+		    data : {
+				
+			},
+		    success: function (data) {
+		    	console.log("确定进入此方法-------")
+		    	console.log(data)
+		    	$("#mhqstyle").empty();
+		    	for(var i=0;i<data.length;i++){ 
+	    		$("#mhqstyle").append("<option value="+data[i].id+">"+data[i].mhqname+"</option>");
+	    }
+		}
+		});}
+
+//根据单位查询出重量
+function QCDanWei(){
+var QCDanWei=document.getElementById("mhqstyle").value
+console.log("进入")
+console.log(QCDanWei)
+	$.ajax({
+	     url: "/FireControl/QCDanWei",
+	    type: "post",
+	    data : {
+			"QCDanWei" : QCDanWei,
+		},
+	    success: function (data) {
+	    	console.log("确定进入此方法-------")
+	    	console.log(data)
+	    	$("#mhqstyle_zl").empty();
+	    	for(var i=0;i<data.length;i++){ 
+    		$("#mhqstyle_zl").append("<option value="+data[i].id+">"+data[i].mhqzl+"</option>");
+    }
+	}
+	});}
