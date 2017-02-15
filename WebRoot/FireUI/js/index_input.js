@@ -1,9 +1,71 @@
 
-//<!--功能管理编辑弹窗-->
+//<!--功能管理编辑弹窗-->并查询角色数据
 	function bt_gngl_tan(){
+		$.ajax({
+		     url: "/FireControl/chaxunjs",
+		    type: "post",
+		    data : {
+			},
+		    success: function (data) {
+		    	$("#juese").empty();
+		    	for(var i=0;i<data.length;i++){ 
+
+	    		$("#juese").append("<option value="+data[i].id+">"+data[i].role_name+"</option>");
+	    	 
+	    }
+		}
+		});
+		
 		document.getElementById("tan_gngl").style.display="block";
 		}
+//查询模块
+	
+	function chaxunmok(){
+		$.ajax({
+		     url: "/FireControl/chaxungl",
+		    type: "post",
+		    data : {
+		    	
+			},
+		    success: function (data) {
+		    	$("#mok").empty();
+		    	for(var i=0;i<data.length;i++){ 
+	    	
+if(data[i].fun_ction!=null){
+	    			
+	    			$("#mok").append("<option value="+data[i].fun_code+">"+data[i].fun_ction+"</option>");
+	    		}
+	    	
+	    	 
+	    }
+		}
+		});
+		
+		document.getElementById("tan_gngl").style.display="block";
+		}	
+//查询子模块
+function zimok(){
 
+	var mok=document.getElementById("mok").value
+	console.log(mok)
+		$.ajax({
+		     url: "/FireControl/chaxunzmok",
+		    type: "post",
+		    data : {
+		    	"mok" : mok,
+			},
+		    success: function (data) {
+		    	console.log(data)
+		    	$("#zimok1").empty();
+		    	for(var i=0;i<data.length;i++){ 
+	    		$("#zimok1").append("<option value="+data[i].sup_code+">"+data[i].fun_zmk+"</option>");
+	    	 
+	    }
+		}
+		});
+		
+		document.getElementById("tan_gngl").style.display="block";
+		}	
 //<!--角色管理编辑弹窗-->
 	function bt_jsgl_tan(){
 		document.getElementById("tan_jsgl").style.display="block";
@@ -194,14 +256,16 @@ function open_yh_manage(){
 		    	console.log("确定进入此方法-------")
 		    	console.log(data)
 		  	$("#user_yonghu").empty();
-		    	$("#user_yonghu").append( " <tr><th>用户编号</th><th>用户名称</th><th>备注</th></tr>" );	
+		    	$("#user_yonghu").append( " <tr><th>用户编号</th><th>用户名称</th><th>备注</th><th>编辑</th></tr>" );	
 		    	for(var i=0;i<data.length;i++){ 
 		       	 $("#user_yonghu").append( "<tr>" );	
 		    	 $("#user_yonghu").append( "<th>"+data[i].user_code+"</th>" );	
 		        $("#user_yonghu").append( " <th>"+data[i].user_name+"</th>" );
-		        $("#user_yonghu").append( "<th>"+data[i].user_remarks+"</th>" );	
+		        $("#user_yonghu").append( "<th>"+data[i].user_remarks+"</th>" );
+		        $("#user_yonghu").append( "<th><button  onClick='bt_yhgl_tan()'>删除</button>" +
+		        		"<button  onClick='bt_yhgl_tan()'>修改</button></th>" );
 		        $("#user_yonghu").append( "</tr>" );	
-	    }	    	
+	    }	   
 		}
 		});
 	    document.getElementById("quanxian_yh_manager").style.display="block";
@@ -242,11 +306,14 @@ function open_gn_manage(){
 	  	$("#fun_gongneng").empty();
 	    	$("#fun_gongneng").append( " <tr><th>模块名称</th><th>子模块名称</th><th>所属上级模块</th></tr>" );	
 	    	for(var i=0;i<data.length;i++){ 
+	    		
 	       	 $("#fun_gongneng").append( "<tr>" );	
 	    	 $("#fun_gongneng").append( "<th>"+data[i].fun_ction+"</th>" );	
 	        $("#fun_gongneng").append( " <th>"+data[i].fun_zmk+"</th>" );
 	        $("#fun_gongneng").append( " <th>"+data[i].sup+"</th>" );
-	        $("#fun_gongneng").append( "</tr>" );	
+	        $("#fun_gongneng").append( "</tr>" );
+	      
+	        
    }	    	
 	}
 	});

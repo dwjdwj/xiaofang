@@ -284,7 +284,7 @@
 <!--我来管理===权限管理==功能管理-->
 <div id="quanxian_gn_manager">
 <div class="fontSig_gl">功能管理</div>
-   <button class="bt_gl_popwindow" onClick="bt_gngl_tan()">编辑</button>
+   <button class="bt_gl_popwindow" onClick="bt_gngl_tan()">授权</button>
    <table class="quanxian_gn_manager_table">  
    <thead id="fun_gongneng">  
    </thead>  
@@ -316,8 +316,8 @@
 <!--我来管理===权限管理==用户管理-->
 
 <div id="quanxian_yh_manager">
-<div class="fontSig_gl">角色管理</div>
-   <button class="bt_gl_popwindow" onClick="bt_yhgl_tan()">编辑</button>
+<div class="fontSig_gl">用户管理</div>
+   <button class="bt_gl_popwindow" onClick="bt_yhgl_tan()">新增</button>
    <table id="user_"class="quanxian_yh_manager_table">  
    <thead id="user_yonghu">  
     
@@ -329,8 +329,17 @@
 </div>
 <!--用户色管理编辑==弹窗-->
 <div id="tan_yhgl" class="tan_gl">
-<button onClick="close_yhgl_tan()">编辑完成</button>
 
+
+
+
+<form action="">
+<center><h3>新增用户</h3></center>
+用户名：<input type="text" value="" name="">
+密码：<input type="text" value="" name=""><br>
+角色：<input type="text" value="" name="">
+<button onClick="close_yhgl_tan()">编辑完成</button>
+</form>
 </div> 
 <!--角色管理编辑==弹窗-->
 <div id="tan_jsgl" class="tan_gl">
@@ -338,7 +347,19 @@
 </div>
 <!--功能管理编辑==弹窗-->
 <div id="tan_gngl" class="tan_gl">
-<button onClick="close_gngl_tan()">编辑完成</button>
+<form action="addshouquan" style="width: 100%;line-height: 20px;"method="post">
+<h1><center>用户授权</center></h1>
+角色：<select name="re.id" id="juese"onclick="chaxunmok()" style=" WIDTH: 16%;">
+    <option >请选择分局</option> 
+  </select>
+    模块：<select name="re.mk_code" id="mok" onclick="zimok()" style="WIDTH: 16%;">
+    <option >请选择模块</option> 
+    </select> 	
+    子模块： <select name="re.su_code" id="zimok1"style="WIDTH: 16%;">
+    <option >请选择模块</option> 
+    </select> 					   				
+<button onClick="close_gngl_tan()">提交</button>
+</form>
 </div>
 </div>
 <!-- //尾部 -->

@@ -27,11 +27,19 @@ public static List<Record> AddFire() {
 //查询功能
 public static List<Record> Fun() {
 
-	List<Record> gongneng = Db.find("select  distinct t1.* ,t2.fun_ction as sup from fun_ction t1 "
-			+ "left join  fun_ction t2 on t1.sup_mk= t2.fun_code");
+	List<Record> gongneng = Db.find("select  distinct t1.* ,t2.fun_ction as sup from fun_ctions t1 "
+			+ "left join  fun_ctions t2 on t1.sup_mk= t2.fun_code");
 
 	return gongneng;	
 }
+//查询子模块
+public static List<Record> Zimok(String mokname) {
+System.out.println(mokname+"mokname");
+	List<Record> quanxian = Db.find("select  * from fun_ctions WHERE fun_ctions.sup_mk='"+mokname+"'");
+
+	return quanxian;
+	}
+//登录时查询权限
 public static List<Record> QuanXian(String username) {
 
 	List<Record> quanxian = Db.find("select  distinct t1.* ,t2.fun_ction as sup from function t1 "

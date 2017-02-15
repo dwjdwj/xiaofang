@@ -38,6 +38,6 @@ public class LogoutController extends Controller {
 		 * </p>
 		 */
 		SSOHelper.clearLogin(getRequest(), getResponse());
-		redirect("login");
+		redirect("login_App");
 	}
 }

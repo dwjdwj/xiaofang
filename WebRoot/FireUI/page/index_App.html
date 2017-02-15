@@ -3,19 +3,33 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>index_App</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+<link rel="stylesheet" href="${base}/FireUI/css/index.css" type="text/css"/>
+<link rel="stylesheet" href="${base}/FireUI/css/jquery-ui.css" type="text/css"/>
+<link rel="stylesheet" href="${base}/FireUI/css/jquery.multiselect.css" type="text/css"/>
+<link rel="stylesheet" href="${base}/FireUI/css/select2.min.css" type="text/css"/>
+<link rel="stylesheet" href="${base}/FireUI/css/dynamic.css" type="text/css"/>
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=ZOvYT7GLTm3wA5KryqVuwdYgbL2zsD7e"></script>
+<script type="text/javascript" src="${base}/FireUI/js/jquery.1.7.2.min.js"></script>
+<script type="text/javascript" src="${base}/FireUI/js/jquery-ui.min.js"></script>
+<script type="text/javascript" src="${base}/FireUI/js/echarts.js"></script>
+<script type="text/javascript" src="${base}/FireUI/js/jquery.multiselect.js"></script>
+<script type="text/javascript" src="${base}/FireUI/js/index_input.js"></script>
+<script type="text/javascript" src="${base}/FireUI/js/select2.min.js"></script>
 </head>
 
 <body style="width:auto; height:auto;">
 
-<div id="Map_jx1">
-  <form action="add" style="width: 100%;line-height: 20px;"method="post">
-    所属分局：<select  				name="jb.fjid" id="fjname"onclick="pcs()" style="    WIDTH: 16%;">
+<div id="Map_jx1" >
+  <form action="add" style="width: 100%;line-height: 20px;"method="post" >
+    所属分局：<select  	 		name="jb.fjid" id="fjname"onclick="pcs()" style="    WIDTH: 16%;">
     <option >请选择分局</option>
     </select><br>
  所属派出所： <select  				name="jb.pcsid" id="pcsname" onclick="sq()" style="">
 <option>请选择派出所</option>	
 </select><br>
-所属派社区： <select  id="sqname"	name="jb.sqid" style="">
+所属派社区： <select  id="sqname"  onMouseDown="qicaitype()"	name="jb.sqid" style="">
  <option>请选择社区</option></select> <br>
  单位名称：
  <input type="text"				name="jb.dwname" style="MARGIN-LEFT: -4PX;"  class="css"/><br>
@@ -108,7 +122,12 @@
   </div>
 
 
-
+<script type="">
+window.onload=function(){
+fenju_id();
+danwei();
+ }
+</script>
 
 
 </body>

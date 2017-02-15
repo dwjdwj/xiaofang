@@ -8,6 +8,7 @@ import com.jfinal.plugin.ehcache.RenderInfo;
 import com.jfinal.template.ext.directive.Str;
 
 import FireControl.com.jfinal.Entity.Collection;
+import FireControl.com.jfinal.Entity.RoleUtil;
 import FireControl.com.jfinal.Model.FenJuDao;
 import FireControl.com.jfinal.Model.JiBenDao;
 import FireControl.com.jfinal.Model.Role;
@@ -39,19 +40,13 @@ public class IndexController extends Controller {
 		 setAttr("login_username",token.getApp());
 	        if(!token.equals("null")){
 	        	System.out.println("进入首页");
-	           
-	  if(token.getUid().equals("app")){
-			System.out.println(token.getUid()+"进入app首页");
-		  render("index_App.html");
-		     return;
- 
-	  }else{
+
 	  render("index.html");
 	     return;
-      }
+
 	        } 
 	      render("login.html");
-    // renderFreeMarker("index.html");
+
 	}
 //查询分局
 	@ActionKey("/chaxunfenju")
@@ -179,7 +174,18 @@ redirect("/index?返回值：="+add+"",true);
 	System.out.println(token.getApp()+":token.getApp()");
 		renderJson(Role.QuanXian(token.getApp()));
 				     }	
-	
+//添加授权信息到关联表
+	@ActionKey("/addshouquan")
+	 public void addshouquan() {
+
+		RoleUtil re= new RoleUtil();
+		re.setId(getPara("re.id"));
+		re.setMk_code(getPara("re.mk_code"));
+		re.setSu_code(getPara("re.su_code"));
+		re._setAttrs(re);
+		boolean add = JiBenDao.AddAll(re);
+redirect("/index?",true);
+}
 	
 	}
 

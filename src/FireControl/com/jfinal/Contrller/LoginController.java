@@ -52,9 +52,9 @@ import org.slf4j.Logger;
 //@Before(SSOJfinalInterceptor.class)
 public class LoginController extends Controller {
 	private static final Logger log = LoggerFactory.getLogger(LoginController.class);
-
 	private static String  verifyCode;
-	public void index() {
+@ActionKey("/login")
+	public void index2() {
         boolean a=false;
 	
 	        Token token = SSOHelper.getToken(getRequest());
@@ -76,7 +76,7 @@ public class LoginController extends Controller {
 	               token.setIp(IpHelper.getIpAddr(getRequest()));
 	               token.setId(UUID.randomUUID().toString());
 	               token.setApp(username);
-	               token.setUid("app");
+	        
 	               System.out.println("验证码通过");
 	               //保存token立即销毁信任的JSESSIONID
 	               SSOHelper.setSSOCookie(getRequest(),getResponse(),token,true);
@@ -98,10 +98,11 @@ public class LoginController extends Controller {
 @ActionKey("/app")
 	public void AppLogin() {
 	boolean a=false;
-	
+	System.out.println("进入app-------------------------");
     Token token = SSOHelper.getToken(getRequest());
     //判断是否是POST提交
     if(HttpUtil.isPost(getRequest())){
+    	System.out.println("进入app------------HttpUtil-------------");
         WafRequestWrapper wafRequestWrapper = new WafRequestWrapper(getRequest());
         String username = wafRequestWrapper.getParameter("username");
         String password = wafRequestWrapper.getParameter("password");
@@ -118,7 +119,7 @@ public class LoginController extends Controller {
            token.setIp(IpHelper.getIpAddr(getRequest()));
            token.setId(UUID.randomUUID().toString());
            token.setApp(username);
-   
+           token.setUid("app");
            System.out.println("app验证码通过");
            //保存token立即销毁信任的JSESSIONID
            SSOHelper.setSSOCookie(getRequest(),getResponse(),token,true);

@@ -4,12 +4,13 @@
 <meta charset="utf-8">
 <link rel="stylesheet" href="css/login_app.css" type="text/css"/>
 <title>login_App</title>
+
 </head>
 
 <body style="width:auto;height:auto;background:#1FB1ED;">
 
 
-  <form id="form-login" method="post" action="${base}/login">
+  <form id="form-login" method="post" action="${base}/app">
 
 <div align="center" style="margin-top:20%;">
     <img src="FireUI/img/user.png" style="width:20px;height:20px; margin-right:20px;font-size:18x;"/>用户登录<br>
@@ -30,20 +31,6 @@
      </form>
 </body>
 <script type="text/javascript">
-function login_click(){
-	
-	var name=document.getElementById("tv_username").value;
-	var pwd=document.getElementById("tv_pwd").value;
-	if(name=="Username"||name==""){
-		alert("没输入名字");
-		return;
-		}
-    if(pwd=="Password"||pwd==""){
-		alert("没输入密码");
-		return;
-		}
-	alert("chengong");		
-	}
 
 </script>
 

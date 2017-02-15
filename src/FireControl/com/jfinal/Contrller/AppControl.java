@@ -9,9 +9,12 @@ package FireControl.com.jfinal.Contrller;
 
 import com.baomidou.kisso.SSOHelper;
 import com.baomidou.kisso.Token;
+import com.jfinal.aop.Before;
+import com.jfinal.core.ActionKey;
 import com.jfinal.core.Controller;
-
+@Before(SSOJfinalInterceptor.class)
 public class AppControl extends Controller{
+	@ActionKey("/appindex")
 	public void index() {
 		Token token = SSOHelper.attrToken(getRequest());
 

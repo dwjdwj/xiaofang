@@ -13,8 +13,10 @@ import java.util.List;
 import com.jfinal.plugin.activerecord.Db;
 import com.jfinal.plugin.activerecord.Model;
 import com.jfinal.plugin.activerecord.Record;
+import com.mchange.io.ReaderUtils;
 
 import FireControl.com.jfinal.Entity.Collection;
+import FireControl.com.jfinal.Entity.RoleUtil;
 
 public class JiBenDao extends Model<JiBenDao>{
 	public  final JiBenDao JiBen_Dao = new JiBenDao();
@@ -59,6 +61,21 @@ public class JiBenDao extends Model<JiBenDao>{
 				.set("ssgxhzt", ((Collection) cn).getSsgxhzt())
 				.set("djsx", ((Collection) cn).getDjsx());
 		boolean pc=Db.save("jb_info", user);
+		
+		System.out.println(pc+":getDwaddress执行完成");
+		return pc;
+		
+	}
+	public static boolean AddRe(Object re){
+		Date d = new Date();  
+        System.out.println(d);
+
+		//boolean pcs = Db.save("jb_info", " INSERT INTO `firecontrol`.`jb_info` (`id`, `fjid`, `fjname`, `pcsid`, `pcsname`, `sqid`, `sqname`, `dwname`, `dwmj`, `dwaddress`, `yyzzid`, `glname`, `iphone`, `code`, `dwsxid`, `dwsx`, `dwxfaqzt`, `mhqstyle`, `mhqnum`, `mhqzl`, `mhqsctime`, `mhqcjname`, `djrname`, `bydjtime`, `byrname`, `byrtime`, `cjszt`, `cjsctime`, `cjyjcztime`, `gxhzt`, `gxsctime`, `gxyjcztime`, `ssname`, `ssbyszt`, `ssgxhzt`, `x`, `y`, `djsx`, `bz`) VALUES (NULL, 'www', 'www', 'eee', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL)", null);
+	Record user = new Record()
+				.set("fjid", ((RoleUtil) re).getId())
+				.set("pcsid", ((RoleUtil) re).getMk_code())
+				.set("sqid", ((RoleUtil) re).getSu_code());
+		boolean pc=Db.save("user_role", user);
 		
 		System.out.println(pc+":getDwaddress执行完成");
 		return pc;
