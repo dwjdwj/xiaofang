@@ -17,7 +17,7 @@
 <script type="text/javascript" src="${base}/FireUI/js/select2.min.js"></script>
 <title>兰州市消防一张图</title>
 </head>
-<body >
+<body  onload="shouquan()">
 <div id="Map_title">
 
   <div id="Map_logo">
@@ -28,10 +28,10 @@
    	注销</a></span>
   </div>
   <div id="MAp_button">
-    <input type="button"id="bt" value="我要采集" onClick="show()" onMouseUp="fenju_id()"
+    <input type="button"id="bt" value="我去采集" onClick="show()" onMouseUp="fenju_id()"
     onMouseOver="danwei()"onMouseDown="qicaitype()">
     <input type="button" value="我要查看" onClick="View_show()">
-    <input type="button" value="我要编辑" onClick="">
+    <input type="button" value="我来管理" onClick="show_manage()">
   </div>
 </div>
 <div id="Map_allmap"></div>
@@ -147,31 +147,6 @@
     </form>
   </div>
 </div>
-
-
-<!--左侧目录树-->
-<ul id="Map_View" type="square">
-	   <!--一级目录-->
-       <li  class="Map_View_l1">分局1</li>
-       <li id="li1" class="Map_View_l1" style="margin-top:5px">分局2</li>
-       		 <!--二级目录-->
-             <ul show="true" id="ul1" class="Map_View_ul" type="square">
-                  <li  class="Map_View_l234">派出所1</li>
-                  <li  class="Map_View_l234">派出所2</li>
-             </ul>
-       <li id="li2" class="Map_View_l1" style="margin-top:5px">分局3</li>
-             <ul id="ul2" class="ul" type="square">
-                  <li  class="Map_View_l234">派出所1</li>
-                  <li class="Map_View_l234">派出所2</li>
-                  <li id="li3" class="Map_View_l234">派出所3</li>
-                  	  <!--三级目录-->
-                      <ul id="ul3" class="ul" type="square">
-                          <li  class="Map_View_l234">单位1</li>
-                          <li  class="Map_View_l234">单位2</li>
-                      </ul>
-             </ul>
-</ul>
-
 <!--我的查看 查看方式模块-->
 <div id="mylook_types">
   <button onClick="" class="">按等级</button>
@@ -183,30 +158,219 @@
   <button onClick="" style=" color:#00c;font-size:20px">导出</button>
   </div>
 </div>
-<div id="all_shebei">
-	<div class="shebei_detail">
-    
-    </div>
-</div>
 <!-- 显示柱状图div -->
 <div id="Map_coun"></div>
+<!--我来管理==左侧目录树-->
+
+<!--我来管理==左侧目录树-->
+ <div  id="dv_manage"> 
+<button  id="bt_close_manager" onClick="close_manager()">关闭</button>
+
+<ul id="goManager" type="square">
+       <li  id="lii1" class="goManager_l1">信息审核</li>
+             <ul id="ull1" class="ul" type="square">
+                                               
+              </ul>
+       <li id="lii2" class="goManager_l1" style="margin-top:5px">器材管理</li>
+             <ul show="true" id="ull2" class="goManager_ul" type="square">
+                 
+             </ul>
+       <li id="lii3" class="goManager_l1" style="margin-top:5px">消防发布</li>
+             <ul id="ull3" class="ul" type="square">
+                  <li  class="goManager_l234">法律法规</li>
+                  <li class="goManager_l234">防火知识</li>
+                  <li  class="goManager_l234">逃生技巧</li>
+                  <li class="goManager_l234">预约管理</li>                 	 
+             </ul>
+       <li id="lii4" class="goManager_l1"style="cursor:pointer" style="margin-top:5px">权限管理</li>
+             <ul id="ull4" class="ul" type="square">
+                  <li  class="goManager_l234" style="cursor:pointer"onClick="open_gn_manage()">功能管理</li>
+                  <li class="goManager_l234" style="cursor:pointer"onClick="open_js_manage()">角色管理</li> 
+                  <li class="goManager_l234"  style="cursor:pointer" onClick="open_yh_manage()">用户管理</li>                 	 
+             </ul>
+</ul>
+
+<!--我来管理===信息审核-->
+<div id="msg_checked">
+   <table class="msg_checked_table">  
+   <thead>  
+    <tr>  
+      <th>单位名称</th>  
+      <th>地址</th>  
+      <th>面积</th>
+      <th>联系人</th>  
+      <th>安全状态</th>  
+      <th>器件、设施状态</th>
+    </tr>
+    <tr>  
+      <th>甘肃华悦</th>  
+      <th>兰州市城关区张掖路</th>  
+      <th>0000</th>
+      <th>党媛</th>  
+      <th>安全</th>  
+      <th>良好</th>
+    </tr>  
+   </thead>  
+   <tbody id='tbody' style=" background-color:transparent; z-index:3">     
+   </tbody>  
+  </table> 
+</div>
+
+<!--我来管理===器材管理-->
+<div id="qicai_manager">
+   <table class="qicai_manager_table">  
+   <thead>  
+    <tr>  
+      <th>品牌</th>  
+      <th>售价</th>  
+      <th>型号</th>
+      <th>合格证书</th>  
+      <th>推荐给单位</th>  
+    </tr>
+    <tr>  
+      <th>飞鹤</th>  
+      <th>12.5</th>  
+      <th>XXXL</th>
+      <th>6225862F</th>  
+      <th><button onclick="">推荐给已选单位</button></th>  
+    </tr>  
+   </thead>  
+   <tbody id='tbody' style=" background-color:transparent; z-index:3">     
+   </tbody>  
+  </table> 
+  <p class="font_yixiang">意向单位:</p>
+  <table class="yixiang_partment">
+   <thead>  
+    <tr>  
+      <th>单位名称</th>  
+      <th>联系人</th>  
+      <th>单位类别</th>
+      <th>单位地址</th>    
+    </tr>
+    <tr>  
+      <th>华悦</th>  
+      <th>党媛</th>  
+      <th>私营</th>
+      <th>兰州</th>    
+    </tr>  
+   </thead>  
+   <tbody id='tbody' style=" background-color:transparent; z-index:3">     
+   </tbody>  
+  </table> 
+</div>
+
+<!--我来管理===消防发布-->
+<div id="xiaofang_fabu">
+	<p>已发布信息：</p>
+    <button>新增</button>
+   <table class="xiaofang_fabu_table">  
+   <thead>  
+    <tr>  
+      <th>名称</th>  
+      <th>发布时间</th>  
+      <th>管理</th> 
+    </tr>
+    <tr>  
+      <th>飞鹤</th>  
+      <th>12.5</th>  
+      <th>消防</th>
+    </tr>  
+   </thead>  
+   <tbody id='tbody' style=" background-color:transparent; z-index:3">     
+   </tbody>  
+  </table> 
+</div>
+
+<!--我来管理===权限管理==功能管理-->
+<div id="quanxian_gn_manager">
+<div class="fontSig_gl">功能管理</div>
+   <button class="bt_gl_popwindow" onClick="bt_gngl_tan()">编辑</button>
+   <table class="quanxian_gn_manager_table">  
+   <thead id="fun_gongneng">  
+   </thead>  
+   <tbody id='tbody' style=" background-color:transparent; z-index:3">     
+   </tbody>  
+  </table> 
+</div>
+
+<!--我来管理===权限管理==角色管理-->
+
+<div id="quanxian_js_manager">
+<div class="fontSig_gl">角色管理</div>
+   <button class="bt_gl_popwindow" onClick="bt_jsgl_tan()">编辑</button>
+   <table class="quanxian_js_manager_table">  
+   <thead id="role_">  
+    <tr>  
+      <th>名称</th>  
+      <th>备注/所属</th>  
+      <th>权限ID</th> 
+      <th>分组</th> 
+    </tr>
+     
+   </thead>  
+   <tbody id='tbody' style=" background-color:transparent; z-index:3">     
+   </tbody>  
+  </table> 
+</div>
+
+<!--我来管理===权限管理==用户管理-->
+
+<div id="quanxian_yh_manager">
+<div class="fontSig_gl">角色管理</div>
+   <button class="bt_gl_popwindow" onClick="bt_yhgl_tan()">编辑</button>
+   <table id="user_"class="quanxian_yh_manager_table">  
+   <thead id="user_yonghu">  
+    
+   </thead>  
+   <tbody id='tbody' style=" background-color:transparent; z-index:3">     
+   </tbody>  
+  </table> 
+  
+</div>
+<!--用户色管理编辑==弹窗-->
+<div id="tan_yhgl" class="tan_gl">
+<button onClick="close_yhgl_tan()">编辑完成</button>
+
+</div> 
+<!--角色管理编辑==弹窗-->
+<div id="tan_jsgl" class="tan_gl">
+<button onClick="close_jsgl_tan()">编辑完成</button>
+</div>
+<!--功能管理编辑==弹窗-->
+<div id="tan_gngl" class="tan_gl">
+<button onClick="close_gngl_tan()">编辑完成</button>
+</div>
+</div>
+<!-- //尾部 -->
 <div id="Map_dongtai">
   <div id="Map_box1"><a>法律法规</a>
-    <button onClick="" style="font-size:10px" class="dynamic">更多...</button>
+    <a href="http://192.168.1.131:8011/jfinal_cms/news" style=" text-decoration:none">更多...<a>
+    <ul  class="falv_msg" type="square" style="margin-top:0px" >
+        <li>中华人民共和国消防法</li>
+    </ul>
   </div>
   <div id="Map_box2"><a>防火知识</a>
-    <button onClick="" style="font-size:10px" class="dynamic">更多...</button>
+    <a href="http://192.168.1.131:8011/jfinal_cms/travel" style=" text-decoration:none">更多...<a>
+    <ul  class="fanghuo_msg" type="square" style="margin-top:0px" >
+        <li>中华人民共和国消防法</li>
+    </ul>
   </div>
   <div id="Map_box3"><a>逃生技巧</a>
-    <button onClick="" style="font-size:10px" class="dynamic">更多...</button>
+    <a href="http://192.168.1.131:8011/jfinal_cms/food" style=" text-decoration:none">更多...<a>
+    <ul  class="taosheng_msg" type="square" style="margin-top:0px" >
+        <li>中华人民共和国消防法</li>
+    </ul>
   </div>
   <div id="Map_box4"><a>培训预约</a>
-    <button onClick="" style="font-size:10px" class="dynamic">更多...</button>
+    <a href="http://192.168.1.131:8011/jfinal_cms/education" style=" text-decoration:none">更多...<a>
+    <ul  class="peixun_msg" type="square" style="margin-top:0px" >
+        <li>中华人民共和国消防法</li>
+    </ul>
   </div>
 </div>
 <div id="Map_banquan" >主办单位：兰州市大数据社会服务管理局 运行管理单位：兰州市大数据社会服务管理局<br/>
   为了获得更好的浏览效果，推荐使用1920*1080分辨率，建议你使用IE9及以上版本浏览器登录本站点</div>
-  
+
 
 </body>
 
@@ -216,7 +380,7 @@
 <script type="text/javascript">
 	var map = new BMap.Map("Map_allmap");    // 创建Map实例
 	map.centerAndZoom(("兰州"), 15);  // 初始化地图,设置中心点坐标和地图级别
-	map.addControl(new BMap.MapTypeControl());   //添加地图类型控件
+	//map.addControl(new BMap.MapTypeControl());   //添加地图类型控件
 	map.setCurrentCity("兰州");          // 设置地图显示的城市 此项是必须设置的
 	map.enableScrollWheelZoom(true);     //开启鼠标滚轮缩放
 	//地图缩放控件
@@ -317,6 +481,7 @@ $(document).ready(function()
   $("#ul3").toggle();
   });
 });
+
 /* 统计分析显示柱状图 */
 function Map_count(){
 	 document.getElementById('Map_coun').style.display="block";
@@ -423,6 +588,27 @@ function Map_recommend(){
 		
 	}
 	}
+
+
+		
+<!--权限管理==目录树-->		
+$(document).ready(function(){
+  $(".ull1").hide();
+})
+$(document).ready(function()
+{
+  $("#lii3").click(function()
+  {
+  $("#ull3").toggle();
+  });
+});
+$(document).ready(function()
+{
+  $("#lii4").click(function()
+  {
+  $("#ull4").toggle();
+  });
+});
 </script>
 </html>
  <script type="text/javascript">
@@ -466,4 +652,5 @@ function Map_recommend(){
      })  
 
  });  
+
     </script>

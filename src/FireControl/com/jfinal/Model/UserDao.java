@@ -12,6 +12,7 @@ import java.util.List;
 import com.jfinal.plugin.activerecord.Db;
 import com.jfinal.plugin.activerecord.Model;
 import com.jfinal.plugin.activerecord.Record;
+import com.jfinal.template.ext.directive.Str;
 
 public class UserDao extends Model<UserDao>{
 	private static final long serialVersionUID = 1L;
@@ -27,6 +28,11 @@ public class UserDao extends Model<UserDao>{
 			return  reuser;
 		
 		}
+//查询用户	
+public static List<Record> User() {
 
+List<Record> returnuser = Db.find("select * from user ");
+
+return returnuser;	
 }
- 
+}

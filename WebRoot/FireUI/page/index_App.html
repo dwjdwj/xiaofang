@@ -1,0 +1,115 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>index_App</title>
+</head>
+
+<body style="width:auto; height:auto;">
+
+<div id="Map_jx1">
+  <form action="add" style="width: 100%;line-height: 20px;"method="post">
+    所属分局：<select  				name="jb.fjid" id="fjname"onclick="pcs()" style="    WIDTH: 16%;">
+    <option >请选择分局</option>
+    </select><br>
+ 所属派出所： <select  				name="jb.pcsid" id="pcsname" onclick="sq()" style="">
+<option>请选择派出所</option>	
+</select><br>
+所属派社区： <select  id="sqname"	name="jb.sqid" style="">
+ <option>请选择社区</option></select> <br>
+ 单位名称：
+ <input type="text"				name="jb.dwname" style="MARGIN-LEFT: -4PX;"  class="css"/><br>
+    营业执照号：
+    <input type="text" 			name="jb.yyzzid" style=""class="css"/><br>
+   
+
+      所属负责人：
+    <input type="text" 			name="jb.glname" style=""class="css"/> <BR>
+地址：
+    <input type="text"			name="jb.dwaddress"  style=""class="css"/><br>
+   面积：
+    <input type="text" 			name="jb.dwmj"style=""class="css"/><br>
+    电话：
+    <input type="text" 			name="jb.iphone" style=""class="css"/>
+<br>
+ 
+    位置：
+    <input type="text" 	style="width:50px"		name="jb.x" id="Map_lng"style=""class="css"/>
+   
+    <input type="text" 	style="width:50px"		name="jb.y"  id="Map_lat"style=""class="css"/>
+    <span id="Map_ts" style="border-radius:5px; border:#FFF solid;width: 100px;cursor:pointer;" onClick="Map_xy()">图上选择</span>
+    <hr style="color:#FFF"/>
+    <div style="padding-bottom:3px">消防安全检查</div>
+    单位选择： <select 				name="jb.dwsxid" onclick="danweishuxin()" onMouseUp="zhuangtai()"id="danwei" style="">
+        <option value="1">请选择单位</option>
+ </select>
+ <br>
+   单位属性： 
+ <select  id="danwei_shuxin"	name="jb.dwsx"class="js-example-basic-multiple" multiple="multiple"style="width: 100px;">
+          
+      </select>  <br>
+  
+  单位状态：
+ <select id="danwei_zhuangtai"	name="jb.dwxfaqzt"class="js-example-basic-multiple" multiple="multiple"style="width: 100px;">
+          
+      </select>  
+
+     
+<br>
+    器材类型：
+    <select 					name="jb.mhqstyle" id="mhqstyle"onclick ="QCDanWei()"style="width:80px;" >
+      
+    </select><br>
+    重量：<select 					name="jb.mhqzl"  id="mhqstyle_zl" style="width:80px;">
+   
+    </select><br>
+    数量：
+    <input type="text"			name="jb.mhqnum"   style="width:80px;" class="css"/><br>
+    
+    品牌：
+    <input type="text" 			name="jb.mhqpp"  style="width:80px;" class="css"/>
+    <br>
+     厂家：
+    <input type="text" 			name="jb.mhqcjname"  style=""class="css"/><br>
+   
+ 生产时间：
+    <input type="text" 			name="jb.mhqsctime"  style=""class="css"/>
+ <br>
+    登记人姓名：
+    <input type="text" 			name="jb.djrname"  style=""class="css"/>
+       
+   登记时间：
+    <input type="text" 			name="jb.bydjtime"  style=""class="css"/><br>
+    保养人姓名：
+    <input type="text" 			name="jb.byrname"  style=""class="css"/>
+   <br> 
+保养的时间：
+    <input type="text" 			name="jb.byrtime"  style=""class="css"/>
+
+    采集时状态：
+    <input type="text"			name="jb.cjszt"   style=""class="css"/>
+采集日期：<input type="text"		name="jb.cjsctime"   style=""class="css"/>
+    <br>
+    药剂充装时间:<input type="date"	name="jb.cjyjcztime"   style=""class="css"/><br>
+ 
+    更新后状态:<input type="text" 	name="jb.gxhzt"  style=""class="css"/><br>
+    更新后生产日期:<input type="date" 	name="jb.gxsctime"  style=""class="css"/>
+<br>更新后药剂充装时间:
+<input type="date"			    name="jb.gxyjcztime"  style=""class="css"/>
+
+    设施检查名称:<input type="text"	name="jb.ssname"   style=""class="css"/>
+    设施保养时状态:<input type="text" 	name="jb.ssbyszt"  style="width:80px;"class="css"/>
+<br>设施更新后状态:<input type="text"name="jb.ssgxhzt"  style=" width:80px;"class="css"/><br>
+  等级属性:<input type="text" 		name="jb.djsx"  style="width:80px;"class="css"/>
+    <br>
+     <input type="submit" style="background:#930; width:40%;align:center" value="提交">
+
+    </form>
+  </div>
+
+
+
+
+
+</body>
+</html>

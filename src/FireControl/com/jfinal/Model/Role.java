@@ -18,10 +18,25 @@ public class Role extends Model<Role> {
 
 private static final long serialVersionUID = 1L;
 public static final Role dao = new Role();
-public List<Record> AddFire(int pageNumber, int pageSize) {
-	List<Record> votes = Db.find("select * from role order by id desc");
-System.out.println("---------");
-		return  votes;
-	
+public static List<Record> AddFire() {
+
+		List<Record> returnuser = Db.find("select * from role ");
+
+		return returnuser;	
 	}
+//查询功能
+public static List<Record> Fun() {
+
+	List<Record> gongneng = Db.find("select  distinct t1.* ,t2.fun_ction as sup from fun_ction t1 "
+			+ "left join  fun_ction t2 on t1.sup_mk= t2.fun_code");
+
+	return gongneng;	
+}
+public static List<Record> QuanXian(String username) {
+
+	List<Record> quanxian = Db.find("select  distinct t1.* ,t2.fun_ction as sup from function t1 "
+			+ "left join  function t2 on t1.sup_mk= t2.fun_code");
+
+	return quanxian;	
+}
 }

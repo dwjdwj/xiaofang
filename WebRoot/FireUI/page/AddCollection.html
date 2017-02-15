@@ -5,6 +5,23 @@
 <title>Insert title here</title>
 </head>
 <body>
-tainjasadsadad
+<table class="xiaofang_fabu_table">  
+   <thead>  
+    <tr>  
+      <th>名称</th>  
+      <th>发布时间</th>  
+      <th>管理</th> 
+    </tr>
+    <#list blogPage as user>
+    <tr>  
+      <th>${(user.id)!''}1</th>  
+      <th> ${(user.id)!''}2</th>  
+      <th>${(user.id)!''}3</th>
+    </tr>  
+     </#list>	
+   </thead>  
+   <tbody id='tbody' style=" background-color:transparent; z-index:3">     
+   </tbody>  
+  </table> 
 </body>
 </html>

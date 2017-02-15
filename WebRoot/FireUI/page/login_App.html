@@ -1,0 +1,50 @@
+﻿<!doctype html>
+<html >
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="css/login_app.css" type="text/css"/>
+<title>login_App</title>
+</head>
+
+<body style="width:auto;height:auto;background:#1FB1ED;">
+
+
+  <form id="form-login" method="post" action="${base}/login">
+
+<div align="center" style="margin-top:20%;">
+    <img src="FireUI/img/user.png" style="width:20px;height:20px; margin-right:20px;font-size:18x;"/>用户登录<br>
+    
+    <input id="username" name="username" type="text"  autocomplete="off"value="" placeholder="电子邮箱/手机号" style="background-color:#F1F1F1;" />${user_name!''}<br>
+
+    <input  id="password" name="password"type="password"  placeholder="请输入密码" autocomplete="off" value="" style="background-color:#F1F1F1;" /><br>
+
+    <input type="text" name="vcode" style="background-color:#F1F1F1; border-radius:5px;width: 95px;">
+    <img onclick="this.src=('${base}/verify?reload='+(new Date()).getTime())" class="vcode" src="${base}/verify" style="height: 25px; border-radius:5px; margin-top: 3% ;cursor: hand"  alt="">
+    <span style="background-color: red">${verifyCode!''}</span>
+    <br>
+    <label class="checkbox" for="chk11">
+    <input style="height: auto;" id="chk11" type="checkbox" name="remember_me" >记住账号</label>
+    <button onClick="login_click()" style="width:90px;">登录</button>
+   </div>     
+
+     </form>
+</body>
+<script type="text/javascript">
+function login_click(){
+	
+	var name=document.getElementById("tv_username").value;
+	var pwd=document.getElementById("tv_pwd").value;
+	if(name=="Username"||name==""){
+		alert("没输入名字");
+		return;
+		}
+    if(pwd=="Password"||pwd==""){
+		alert("没输入密码");
+		return;
+		}
+	alert("chengong");		
+	}
+
+</script>
+
+</html>

@@ -76,6 +76,7 @@ public class LoginController extends Controller {
 	               token.setIp(IpHelper.getIpAddr(getRequest()));
 	               token.setId(UUID.randomUUID().toString());
 	               token.setApp(username);
+	               token.setUid("app");
 	               System.out.println("验证码通过");
 	               //保存token立即销毁信任的JSESSIONID
 	               SSOHelper.setSSOCookie(getRequest(),getResponse(),token,true);
@@ -93,7 +94,48 @@ public class LoginController extends Controller {
             render("login.html");
 
 	    }
-		
+//app使用登录界面
+@ActionKey("/app")
+	public void AppLogin() {
+	boolean a=false;
+	
+    Token token = SSOHelper.getToken(getRequest());
+    //判断是否是POST提交
+    if(HttpUtil.isPost(getRequest())){
+        WafRequestWrapper wafRequestWrapper = new WafRequestWrapper(getRequest());
+        String username = wafRequestWrapper.getParameter("username");
+        String password = wafRequestWrapper.getParameter("password");
+        String vcode = wafRequestWrapper.getParameter("vcode");
+      //验证账号密码,此处去数据库校验
+        UserDao addfile = enhance(UserDao.class);  
+        a=addfile.QueryUser(username, password);
+		  System.out.println(a+"返回值");
+        if(a==true){
+      //验证验证码
+        if ( verifyCode.equalsIgnoreCase(vcode)) {
+           token = new SSOToken();
+           token.setUid(UUID.randomUUID().toString());
+           token.setIp(IpHelper.getIpAddr(getRequest()));
+           token.setId(UUID.randomUUID().toString());
+           token.setApp(username);
+   
+           System.out.println("app验证码通过");
+           //保存token立即销毁信任的JSESSIONID
+           SSOHelper.setSSOCookie(getRequest(),getResponse(),token,true);
+           redirect("/appindex?app="+username+"",true);
+           return;
+           }else{
+        	 	 setAttr("verifyCode","验证码错误");   
+           }
+        }else{
+   	 	 setAttr("user_name","用户名或密码错误");   
+      }
+
+    }
+
+    render("login_App.html");
+
+	}		
 	
 	/**
 	 * 验证码
@@ -129,5 +171,11 @@ public class LoginController extends Controller {
 		System.out.println("进入退出");
 		redirect("/login");
 	}
+@ActionKey("/test")
+public void User() {
+	setAttr("w","22");   
+	 render("test.html");
+
+			     }
 	
 }

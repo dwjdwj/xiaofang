@@ -11,6 +11,7 @@ import FireControl.com.jfinal.Entity.Collection;
 import FireControl.com.jfinal.Model.FenJuDao;
 import FireControl.com.jfinal.Model.JiBenDao;
 import FireControl.com.jfinal.Model.Role;
+import FireControl.com.jfinal.Model.UserDao;
 
 import java.util.List;
 
@@ -30,21 +31,24 @@ import com.jfinal.core.ActionKey;
 public class IndexController extends Controller {
 	private static final Logger log = LoggerFactory.getLogger(IndexController.class);
 	private List<Record> list;
+	 
 	@ActionKey("/index")
 	public void index() {
-		 Token token = SSOHelper.attrToken(getRequest());
+		Token token = SSOHelper.attrToken(getRequest());
 		 System.out.println(token+":tokenzhi");
+		 setAttr("login_username",token.getApp());
 	        if(!token.equals("null")){
 	        	System.out.println("进入首页");
-	  
-	       	 setAttr("login_username",token.getApp());
-				
-				System.out.println(getPara("test")+"mtttttttttt");
-				
-	    // setAttr("blogPage",Role.dao.AddFire(0, 0));
-	            render("index.html");
-	            System.out.println("登陆令牌IP地址"+token.getApp());
-	            return;
+	           
+	  if(token.getUid().equals("app")){
+			System.out.println(token.getUid()+"进入app首页");
+		  render("index_App.html");
+		     return;
+ 
+	  }else{
+	  render("index.html");
+	     return;
+      }
 	        } 
 	      render("login.html");
     // renderFreeMarker("index.html");
@@ -104,7 +108,7 @@ public void QCDanWei() {
 renderJson(FenJuDao.QCDanWei(QCDanWei));
 			     }
 
-//添加数据到数据库
+//为要采集
 	@ActionKey("/add")
 	 public void AddCollection() {
     //从页面获取属性
@@ -148,8 +152,38 @@ renderJson(FenJuDao.QCDanWei(QCDanWei));
 
 redirect("/index?返回值：="+add+"",true);
     }
+//查询用户
+	@ActionKey("/chaxunyonghu")
+	public void User() {
 
+		renderJson(UserDao.User());
+				     }
+//查询角色
+	@ActionKey("/chaxunjs")
+	public void Role() {
+
+		renderJson(Role.AddFire());
+				     }
+	
+//查询功能
+@ActionKey("/chaxungl")
+	public void Fun() {
+
+		renderJson(Role.Fun());
+		}
+//查询模块授权
+@ActionKey("/chaxunshouquan")
+	public void ChaXsq() {
+	Token token = SSOHelper.attrToken(getRequest());
+	
+	System.out.println(token.getApp()+":token.getApp()");
+		renderJson(Role.QuanXian(token.getApp()));
+				     }	
+	
+	
 	}
+
+
 
 
 

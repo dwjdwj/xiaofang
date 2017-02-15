@@ -102,4 +102,280 @@
 	top:30%;
 	background:#C99;
 	position:fixed;
-	display:none;}		
+	display:none;}	
+	/**信息审核**/
+#msg_checked{
+	top: 10%; left: 25%; bottom: 19.5%; right:3%;
+	background-color:#fff;
+	position:absolute;
+	border:#00f solid 3px;
+	display:none;
+}
+
+.msg_checked_table{
+	text-align:center;
+	margin:5%;
+	position:absolute; 
+	background-color:#D8E7F5;
+	z-index:3;
+	border:#000 solid 2px;
+	}
+	
+	/**器材管理**/
+#qicai_manager{
+	top: 10%; left: 25%; bottom: 19.5%; right:3%;
+	background-color:#fff;
+	position:absolute;
+	border:#00f solid 3px;
+	display:none;
+}
+
+.qicai_manager_table{
+	text-align:center;
+	margin:5%;
+	position:absolute; 
+	background-color:#D8E7F5;
+	z-index:3;
+	border:#000 solid 2px;
+	border-radius:5px;
+	}
+	
+	
+.yixiang_partment{
+	text-align:center;
+	margin-left:5%;
+	margin-right:5%;
+	margin-bottom:5%;
+	margin-top:20%;
+	position:absolute; 
+	background-color:#D8E7F5;
+	z-index:3;
+	border:#000 solid 2px;
+	border-radius:5px;
+}
+	
+ th{
+	border:1px solid blue;  
+	border-radius:5px;
+    text-align:center;  
+    line-height:center;  
+    width:2%;  
+    height:10%; 
+		}
+	/****/
+.font_yixiang{
+	text-align:center;
+	margin-left:5%;
+	margin-right:5%;
+	margin-bottom:5%;
+	margin-top:17%;
+	position:absolute; 
+	font-size:16px;
+	color:#000;
+	z-index:3;
+	}
+#xiaofang_fabu{
+	top: 10%; left: 25%; bottom: 19.5%; right:3%;
+	background-color:#fff;
+	position:absolute;
+	border:#00f solid 3px;
+	display:none;
+}
+
+.xiaofang_fabu_table{
+	text-align:center;
+	margin:5%;
+	position:absolute; 
+	background-color:#D8E7F5;
+	z-index:3;
+	border:#000 solid 2px;
+	border-radius:5px;
+	}	
+	/**我来管理==目录树**/
+#goManager{
+	top: 5%; left: 0%; bottom: 0%; right:75%; 
+	background:#95CFF2; 
+	position:absolute; 
+	margin:0%;
+	display:none;
+	border:#666 solid 3px;
+	
+	}
+.goManager_l1{
+	margin-top:5px;
+	background:#00C;
+	color:#FFFFFF;
+	border:#fff solid;
+	border-width:1px;
+	}
+.goManager_l234{
+	margin-top:5px;
+	background-color:transparent;
+	color:#00C;
+	}
+/**我来管理===消防发布==法律法规**/
+#falv_fg{
+	top: 0%; left: 25%; bottom: 0%; right:0%;
+	background-color:#fff;
+	position:absolute;
+	border:#00f solid 3px;
+	display:none;
+}
+
+.falv_fg_table{
+	text-align:center;
+	margin:5%;
+	position:absolute; 
+	background-color:#D8E7F5;
+	z-index:3;
+	border:#000 solid 2px;
+	border-radius:5px;
+	}
+/**我来管理===消防发布==防火知识**/
+#fanghuo_zs{
+	top: 0%; left: 25%; bottom: 0%; right:0%;
+	background-color:#fff;
+	position:absolute;
+	border:#00f solid 3px;
+	display:none;
+}
+
+.fanghuo_zs_table{
+	text-align:center;
+	margin:5%;
+	position:absolute; 
+	background-color:#D8E7F5;
+	z-index:3;
+	border:#000 solid 2px;
+	border-radius:5px;
+	}
+/**我来管理===消防发布==逃生技巧**/
+#taosheng_jq{
+	top: 0%; left: 25%; bottom: 0%; right:0%;
+	background-color:#fff;
+	position:absolute;
+	border:#00f solid 3px;
+	display:none;
+}
+
+.taosheng_jq_table{
+	text-align:center;
+	margin:5%;
+	position:absolute; 
+	background-color:#D8E7F5;
+	z-index:3;
+	border:#000 solid 2px;
+	border-radius:5px;
+	}
+/**我来管理===消防发布==预约管理**/
+#yuyue_gl{
+	top: 0%; left: 25%; bottom: 0%; right:0%;
+	background-color:#fff;
+	position:absolute;
+	border:#00f solid 3px;
+	display:none;
+}
+
+.yuyue_gl_table{
+	text-align:center;
+	margin:5%;
+	position:absolute; 
+	background-color:#D8E7F5;
+	z-index:3;
+	border:#000 solid 2px;
+	border-radius:5px;
+	}
+	
+/**我来管理===权限管理==功能管理**/
+#quanxian_gn_manager{
+	top: 5%; left: 25%; bottom: 0%; right:0%;
+	background-color:#fff;
+	position:absolute;
+	border:#00f solid 3px;
+	display:none;
+}
+
+.quanxian_gn_manager_table{
+	text-align:center;
+	margin:5%;
+	position:absolute; 
+	background-color:#D8E7F5;
+	z-index:3;
+	border:#000 solid 2px;
+	border-radius:5px;
+	    margin-top: -5%;
+	}
+/**我来管理===权限管理==角色管理**/
+#quanxian_js_manager{
+	top: 0%; left: 25%; bottom: 0%; right:0%;
+	background-color:#fff;
+	position:absolute;
+	border:#00f solid 3px;
+	display:none;
+}
+
+.quanxian_js_manager_table{
+	text-align:center;
+	margin:5%;
+	position:absolute; 
+	background-color:#D8E7F5;
+	z-index:3;
+	border:#000 solid 2px;
+	border-radius:5px;
+	    margin-top: -5%;
+	}
+/**我来管理===权限管理==用户管理**/
+#quanxian_yh_manager{
+	top: 0%; left: 25%; bottom: 0%; right:0%;
+	background-color:#fff;
+	position:absolute;
+	border:#00f solid 3px;
+	display:none;
+}
+
+.quanxian_yh_manager_table{
+	text-align:center;
+	margin:5%;
+	position:absolute; 
+	background-color:#D8E7F5;
+	z-index:3;
+	border:#000 solid 2px;
+	border-radius:5px;
+	    margin-top: -5%;
+	
+	}
+/**管理界面**/
+#dv_manage{
+	position:absolute;
+	top: 10%; left: 3%; bottom: 19.5%; right:3%;
+	background-color:transparent;
+	padding:3%;
+	display:none;
+	}
+/**关闭我要管理界面**/
+#bt_close_manager{
+	z-index:4;
+	top: 0%; left: 23.5%;
+	position:absolute;
+	display:none;
+	}
+/**管理界面文字提示**/
+.fontSig_gl{
+	margin:5%;
+	}
+.bt_gl_popwindow{
+	width:6%;
+	height:5%;
+	position:absolute;
+	top: 7%; 
+	right:3%;
+	
+	}
+.tan_gl{
+	position:absolute;
+	background:#9CDAFF;
+	border:#000 solid 3px;
+	top: 5%; left: 45%; bottom: 45%; right:15%;
+	z-index:5;
+	display:none;
+	}

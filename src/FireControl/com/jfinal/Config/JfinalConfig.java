@@ -18,6 +18,7 @@ import com.jfinal.plugin.ehcache.EhCachePlugin;
 import com.jfinal.render.ViewType;
 import com.jfinal.template.Engine;
 
+import FireControl.com.jfinal.Contrller.AppControl;
 import FireControl.com.jfinal.Contrller.IndexController;
 import FireControl.com.jfinal.Contrller.KissoJfinalPlugin;
 import FireControl.com.jfinal.Contrller.LoginController;
@@ -51,6 +52,7 @@ public class JfinalConfig extends JFinalConfig {
 	public void configRoute(Routes me) {
 		me.add("/", IndexController.class,"/FireUI/page");	// 第三个参数为该Controller的视图存放路径
 		me.add("/login", LoginController.class,"/FireUI/page");
+		me.add("/appindex", AppControl.class,"/FireUI/page");
 		//me.add("/verify", VerifyCodeController.class,"/login");
 	
 	}
