@@ -72,9 +72,9 @@ public class JiBenDao extends Model<JiBenDao>{
 
 		//boolean pcs = Db.save("jb_info", " INSERT INTO `firecontrol`.`jb_info` (`id`, `fjid`, `fjname`, `pcsid`, `pcsname`, `sqid`, `sqname`, `dwname`, `dwmj`, `dwaddress`, `yyzzid`, `glname`, `iphone`, `code`, `dwsxid`, `dwsx`, `dwxfaqzt`, `mhqstyle`, `mhqnum`, `mhqzl`, `mhqsctime`, `mhqcjname`, `djrname`, `bydjtime`, `byrname`, `byrtime`, `cjszt`, `cjsctime`, `cjyjcztime`, `gxhzt`, `gxsctime`, `gxyjcztime`, `ssname`, `ssbyszt`, `ssgxhzt`, `x`, `y`, `djsx`, `bz`) VALUES (NULL, 'www', 'www', 'eee', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL)", null);
 	Record user = new Record()
-				.set("fjid", ((RoleUtil) re).getId())
-				.set("pcsid", ((RoleUtil) re).getMk_code())
-				.set("sqid", ((RoleUtil) re).getSu_code());
+				.set("gl_role_code", ((RoleUtil) re).getId())
+				.set("mk_code", ((RoleUtil) re).getMk_code())
+				.set("su_code", ((RoleUtil) re).getSu_code());
 		boolean pc=Db.save("user_role", user);
 		
 		System.out.println(pc+":getDwaddress执行完成");

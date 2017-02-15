@@ -174,6 +174,12 @@ redirect("/index?返回值：="+add+"",true);
 	System.out.println(token.getApp()+":token.getApp()");
 		renderJson(Role.QuanXian(token.getApp()));
 				     }	
+//查询模块子模块
+@ActionKey("/chaxunzmok")
+	public void Chazmok() {
+	String Zimok=getPara("mok");
+		renderJson(Role.Zimok(Zimok));
+				     }	
 //添加授权信息到关联表
 	@ActionKey("/addshouquan")
 	 public void addshouquan() {
@@ -183,7 +189,7 @@ redirect("/index?返回值：="+add+"",true);
 		re.setMk_code(getPara("re.mk_code"));
 		re.setSu_code(getPara("re.su_code"));
 		re._setAttrs(re);
-		boolean add = JiBenDao.AddAll(re);
+		boolean add = JiBenDao.AddRe(re);
 redirect("/index?",true);
 }
 	

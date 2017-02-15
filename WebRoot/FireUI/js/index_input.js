@@ -295,6 +295,24 @@ function open_js_manage(){
 		document.getElementById("quanxian_gn_manager").style.display="none";
 		document.getElementById("quanxian_yh_manager").style.display="none";
 	}
+//添加用户使用+查询角色
+function adduser(){
+
+	$.ajax({
+	     url: "/FireControl/chaxunjs",
+	    type: "post",
+	    success: function (data) {
+	    console.log(data)
+	  	$("#adduser").empty();
+	    	
+	    	for(var i=0;i<data.length;i++){ 
+	    		$("#adduser").append("<option value="+data[i].id+">"+data[i].role_name+"</option>");
+	    	
+    }	    	
+	}
+	});
+  
+}
 //<!--打开功能管理界面-->
 function open_gn_manage(){
 	$.ajax({
@@ -327,11 +345,31 @@ function shouquan(){
 	$.ajax({
    url: "/FireControl/chaxunshouquan",
 	    type: "post",
-	    data : {
-
-		},
+	   
 	    success: function (data) {
-	
+	    	console.log("---------------------")
+	console.log(data)
+
+        	for(var i=0;i<data.length;i++){ 
+        		console.log(data[i].mk_code)
+        		
+            if(data[i].mk_code==1){
+            	 $("#caiji").show();
+  
+            }else{  $("#caiji").hide()}
+        		
+        		if(data[i].mk_code==2){
+             $("#chakan").show();	
+            }else{ $("#chakan").hide }
+        	
+            if(data[i].mk_code==3)
+            {
+                $("#guanli").show();	
+            	
+            }else{$("#guanli").hide()}
+        	
+            }
+            
 	}
 	});
 	   

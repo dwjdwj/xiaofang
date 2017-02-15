@@ -127,6 +127,18 @@ window.onload=function(){
 fenju_id();
 danwei();
  }
+
+$(function(){
+alert("iiii")
+    //通过暴露的my对象来获取数据
+    var data = langLat.getData();
+    //将json字符串转换为数组
+     var f = eval(data);
+    //向表格填充数据 
+     document.getElementById("Map_lng").innerHTML = f[0];
+     document.getElementById("Map_lat").innerHTML = f[1];
+   });
+
 </script>
 
 

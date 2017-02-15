@@ -52,6 +52,7 @@ public class JfinalConfig extends JFinalConfig {
 	public void configRoute(Routes me) {
 		me.add("/index", IndexController.class,"/FireUI/page");	// 第三个参数为该Controller的视图存放路径
 		me.add("/", LoginController.class,"/FireUI/page");
+		me.add("/adduser", AppControl.class,"/FireUI/page");
 		me.add("/appindex", AppControl.class,"/FireUI/page");
 		//me.add("/verify", VerifyCodeController.class,"/login");
 	

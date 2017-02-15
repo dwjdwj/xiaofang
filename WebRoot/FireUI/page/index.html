@@ -28,10 +28,10 @@
    	注销</a></span>
   </div>
   <div id="MAp_button">
-    <input type="button"id="bt" value="我去采集" onClick="show()" onMouseUp="fenju_id()"
-    onMouseOver="danwei()"onMouseDown="qicaitype()">
-    <input type="button" value="我要查看" onClick="View_show()">
-    <input type="button" value="我来管理" onClick="show_manage()">
+    <input type="button" id="caiji" name="bt"value="我去采集" onClick="show()" onMouseUp="fenju_id()"
+    onMouseOver="danwei()" onMouseDown="qicaitype()">
+    <input id="chakan" type="button" value="我要查看" onClick="View_show()">
+    <input id="guanli" type="button" value="我来管理" onClick="show_manage()">
   </div>
 </div>
 <div id="Map_allmap"></div>
@@ -300,11 +300,7 @@
    <button class="bt_gl_popwindow" onClick="bt_jsgl_tan()">编辑</button>
    <table class="quanxian_js_manager_table">  
    <thead id="role_">  
-    <tr>  
-      <th>名称</th>  
-      <th>备注/所属</th>  
-      <th>权限ID</th> 
-      <th>分组</th> 
+    <tr> 
     </tr>
      
    </thead>  
@@ -317,7 +313,7 @@
 
 <div id="quanxian_yh_manager">
 <div class="fontSig_gl">用户管理</div>
-   <button class="bt_gl_popwindow" onClick="bt_yhgl_tan()">新增</button>
+   <button class="bt_gl_popwindow" onClick="bt_yhgl_tan()" onMouseUp="adduser()">新增用户</button>
    <table id="user_"class="quanxian_yh_manager_table">  
    <thead id="user_yonghu">  
     
@@ -337,8 +333,10 @@
 <center><h3>新增用户</h3></center>
 用户名：<input type="text" value="" name="">
 密码：<input type="text" value="" name=""><br>
-角色：<input type="text" value="" name="">
-<button onClick="close_yhgl_tan()">编辑完成</button>
+角色：<select name="re.id" id="adduser" style=" WIDTH: 16%;">
+    <option >请选择角色</option> 
+  </select>
+<button onClick="close_yhgl_tan()">提交</button>
 </form>
 </div> 
 <!--角色管理编辑==弹窗-->
@@ -350,7 +348,7 @@
 <form action="addshouquan" style="width: 100%;line-height: 20px;"method="post">
 <h1><center>用户授权</center></h1>
 角色：<select name="re.id" id="juese"onclick="chaxunmok()" style=" WIDTH: 16%;">
-    <option >请选择分局</option> 
+    <option >请选择角色</option> 
   </select>
     模块：<select name="re.mk_code" id="mok" onclick="zimok()" style="WIDTH: 16%;">
     <option >请选择模块</option> 

@@ -14,6 +14,8 @@ import com.jfinal.plugin.activerecord.Db;
 import com.jfinal.plugin.activerecord.Model;
 import com.jfinal.plugin.activerecord.Record;
 
+import FireControl.com.jfinal.Entity.UserUtil;
+
 public class Role extends Model<Role> {
 
 private static final long serialVersionUID = 1L;
@@ -40,11 +42,26 @@ System.out.println(mokname+"mokname");
 	return quanxian;
 	}
 //登录时查询权限
-public static List<Record> QuanXian(String username) {
+public static List<Record> QuanXian(String caxunquxnain) {
 
-	List<Record> quanxian = Db.find("select  distinct t1.* ,t2.fun_ction as sup from function t1 "
-			+ "left join  function t2 on t1.sup_mk= t2.fun_code");
+	List<Record> quanxian = Db.find("select  distinct ur.mk_code from user u "
+			+ "LEFT JOIN role r ON u.rel_code = r.id"
+			+ " LEFT JOIN user_role ur ON r.id = ur.gl_role_code"
+			+ " WHERE u.user_name='"+caxunquxnain+"'");
 
 	return quanxian;	
 }
+
+//添加用户
+public static List<Record> Adduser(UserUtil cn) {
+
+	List<Record> re = Db.find("select  distinct ur.mk_code from user u "
+			+ "LEFT JOIN role r ON u.rel_code = r.id"
+			+ " LEFT JOIN user_role ur ON r.id = ur.gl_role_code"
+			+ " WHERE u.user_name='"+cn+"'");
+
+	return re;	
+}
+
+
 }

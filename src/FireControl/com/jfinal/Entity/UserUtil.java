@@ -9,7 +9,7 @@ package FireControl.com.jfinal.Entity;
 
 import com.jfinal.plugin.activerecord.Model;
 
-public class user extends Model<user> {
+public class UserUtil extends Model<UserUtil> {
 	private String id;//id
 	private String user_name;//用户名
 	private String user_password;//密码
